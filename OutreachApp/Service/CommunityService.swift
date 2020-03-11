@@ -15,7 +15,18 @@ protocol CommunityService {
 
 final class CommunityServiceImpl: CommunityService {
 
+    let persistenceStore: ContactPersistenceStore
+
+    init(persistenceStore: ContactPersistenceStore = ContactPersistenceStore.shared) {
+        self.persistenceStore = persistenceStore
+    }
+
     func fetchCommunities(completion: @escaping (Result<[Community], Error>) -> Void) {
-        completion(Result.success([Community(name: "My family")]))
+        do {
+            let communities: [Community] = try persistenceStore.fetch()
+            completion(Result.success(communities))
+        } catch {
+            completion(Result.failure(error))
+        }
     }
 }

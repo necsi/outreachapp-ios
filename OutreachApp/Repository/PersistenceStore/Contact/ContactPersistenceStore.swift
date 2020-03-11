@@ -29,7 +29,8 @@ final class ContactPersistenceStore {
         return container.viewContext
     }
 
-    func save(context: NSManagedObjectContext) throws {
+    func save(context: NSManagedObjectContext? = nil) throws {
+        let context = context ?? mainContext
         var error: Error?
         context.mergePolicy = NSMergePolicy.overwrite
         context.performAndWait {
@@ -44,10 +45,11 @@ final class ContactPersistenceStore {
         if let error = error { throw error }
     }
 
-    func fetch<Resource: NSManagedObject>(with identifier: Int,
-                                          context: NSManagedObjectContext? = nil) -> Resource? {
+    func fetch<Resource: NSManagedObject>(withId identifier: Int,
+                                          context: NSManagedObjectContext? = nil) throws -> Resource? {
         let context = context ?? mainContext
         var resource: Resource?
+        var error: Error?
         let fetchRequest: NSFetchRequest<Resource> = Resource.fetchRequest() as! NSFetchRequest<Resource>
         let predicate = NSPredicate(format: "identifier == %d", identifier)
         fetchRequest.predicate = predicate
@@ -55,18 +57,22 @@ final class ContactPersistenceStore {
         context.performAndWait {
             do {
                 resource = try context.fetch(fetchRequest).first
-            } catch {
-                NSLog("Error loading from persistent store: \(error)")
+            } catch let caughtError {
+                NSLog("Error loading from persistent store: \(caughtError)")
+                error = caughtError
             }
         }
+
+        if let error = error { throw error }
 
         return resource
     }
 
-    func fetch<Resource: NSManagedObject>(recent fetchLimit: Int,
-                                          in context: NSManagedObjectContext? = nil) -> [Resource] {
+    func fetch<Resource: NSManagedObject>(recent fetchLimit: Int = 100,
+                                          in context: NSManagedObjectContext? = nil) throws -> [Resource] {
         let context = context ?? mainContext
         var resource = [Resource]()
+        var error: Error?
         let entityName = String(describing: Resource.self)
         let fetchRequest = NSFetchRequest<Resource>(entityName: entityName)
 
@@ -77,10 +83,13 @@ final class ContactPersistenceStore {
         context.performAndWait {
             do {
                 resource = try context.fetch(fetchRequest)
-            } catch {
-                NSLog("Error loading from persistent store: \(error)")
+            } catch let caughtError {
+                NSLog("Error loading from persistent store: \(caughtError)")
+                error = caughtError
             }
         }
+
+        if let error = error { throw error }
 
         return resource
     }
