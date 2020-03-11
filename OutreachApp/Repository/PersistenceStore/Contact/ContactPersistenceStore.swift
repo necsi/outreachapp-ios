@@ -8,8 +8,17 @@
 
 import CoreData
 
+protocol ContactPersistenceStoreProtocol {
+
+    func save(context: NSManagedObjectContext?) throws
+    func fetch<Resource: NSManagedObject>(withId identifier: Int,
+                                          context: NSManagedObjectContext?) throws -> Resource?
+    func fetch<Resource: NSManagedObject>(recent fetchLimit: Int,
+                                          in context: NSManagedObjectContext?) throws -> [Resource]
+}
+
 // TODO: Refactor, add protocol and remove shared
-final class ContactPersistenceStore {
+final class ContactPersistenceStore: ContactPersistenceStoreProtocol {
 
     static let shared = ContactPersistenceStore()
 
@@ -58,7 +67,7 @@ final class ContactPersistenceStore {
             do {
                 resource = try context.fetch(fetchRequest).first
             } catch let fetchError {
-                NSLog("Error loading from persistent store: \(caughtError)")
+                NSLog("Error loading from persistent store: \(fetchError)")
                 error = fetchError
             }
         }
