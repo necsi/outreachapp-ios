@@ -57,9 +57,9 @@ final class ContactPersistenceStore {
         context.performAndWait {
             do {
                 resource = try context.fetch(fetchRequest).first
-            } catch let caughtError {
+            } catch let fetchError {
                 NSLog("Error loading from persistent store: \(caughtError)")
-                error = caughtError
+                error = fetchError
             }
         }
 
@@ -83,9 +83,9 @@ final class ContactPersistenceStore {
         context.performAndWait {
             do {
                 resource = try context.fetch(fetchRequest)
-            } catch let caughtError {
-                NSLog("Error loading from persistent store: \(caughtError)")
-                error = caughtError
+            } catch let fetchError {
+                NSLog("Error loading from persistent store: \(fetchError)")
+                error = fetchError
             }
         }
 
