@@ -21,6 +21,8 @@ final class CommunityListViewModel {
         return communities.count
     }
 
+    var router: CommunityRouter?
+
     private let communityService: CommunityService
 
     init(communityService: CommunityService) {
@@ -43,6 +45,10 @@ final class CommunityListViewModel {
 
     func cellViewModel(at indexPath: IndexPath) -> CommunityCellViewModel {
         return communities[indexPath.row]
+    }
+
+    func addCommunity() {
+        router?.goToAddCommunity()
     }
 }
 
