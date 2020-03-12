@@ -10,9 +10,20 @@ import UIKit
 
 struct CommunityBuilder {
 
-    static func build() -> UIViewController {
+    func buildCommunityList() -> UIViewController {
         let service = CommunityServiceImpl()
         let viewModel = CommunityListViewModel(communityService: service)
-        return CommunityViewController(style: .plain,viewModel: viewModel)
+        let viewController = CommunityViewController(style: .plain,viewModel: viewModel)
+        let router = CommunityRouter(communityList: viewController, builder: self)
+        viewModel.router = router
+        return viewController
+    }
+
+    func buildAddCommunity(output: AddCommunityViewModelOutput) -> UIViewController {
+        let viewModel = AddCommunityViewModel()
+        viewModel.output = output
+        let viewController = AddCommunityViewController(viewModel: viewModel)
+        let navController = UINavigationController(rootViewController: viewController)
+        return navController
     }
 }

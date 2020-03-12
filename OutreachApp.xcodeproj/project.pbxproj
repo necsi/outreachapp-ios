@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0B0FB61A241729DE00ABD14D /* Community.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0FB619241729DE00ABD14D /* Community.swift */; };
+		0B2374EA241A7F2400E072AC /* AddCommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2374E9241A7F2400E072AC /* AddCommunityViewModel.swift */; };
+		0B2374EE241A81FC00E072AC /* AddCommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2374ED241A81FC00E072AC /* AddCommunityViewController.swift */; };
+		0B2374F0241A841200E072AC /* CommunityRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2374EF241A841200E072AC /* CommunityRouter.swift */; };
 		0B7DA8662414B9E400F0B210 /* PhoneContactListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7DA8652414B9E400F0B210 /* PhoneContactListViewModel.swift */; };
 		0B7DA8692414B9F200F0B210 /* PhoneContactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7DA8682414B9F200F0B210 /* PhoneContactService.swift */; };
 		0B7DA86D2414BF3000F0B210 /* PhoneContactCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7DA86C2414BF3000F0B210 /* PhoneContactCellViewModel.swift */; };
@@ -52,6 +55,9 @@
 
 /* Begin PBXFileReference section */
 		0B0FB619241729DE00ABD14D /* Community.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
+		0B2374E9241A7F2400E072AC /* AddCommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommunityViewModel.swift; sourceTree = "<group>"; };
+		0B2374ED241A81FC00E072AC /* AddCommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommunityViewController.swift; sourceTree = "<group>"; };
+		0B2374EF241A841200E072AC /* CommunityRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityRouter.swift; sourceTree = "<group>"; };
 		0B7DA8652414B9E400F0B210 /* PhoneContactListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneContactListViewModel.swift; sourceTree = "<group>"; };
 		0B7DA8682414B9F200F0B210 /* PhoneContactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneContactService.swift; sourceTree = "<group>"; };
 		0B7DA86C2414BF3000F0B210 /* PhoneContactCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneContactCellViewModel.swift; sourceTree = "<group>"; };
@@ -254,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				0BA2B820241725FF0067F14C /* CommunityBuilder.swift */,
+				0B2374EF241A841200E072AC /* CommunityRouter.swift */,
 				0BA2B827241727440067F14C /* ViewModel */,
 				0BA2B826241727310067F14C /* View */,
 			);
@@ -263,6 +270,7 @@
 		0BA2B826241727310067F14C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0B2374ED241A81FC00E072AC /* AddCommunityViewController.swift */,
 				0BA2B81C241725CD0067F14C /* CommunityTableViewCell.swift */,
 				0BA2B81E241725EA0067F14C /* CommunityViewController.swift */,
 			);
@@ -272,6 +280,7 @@
 		0BA2B827241727440067F14C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				0B2374E9241A7F2400E072AC /* AddCommunityViewModel.swift */,
 				0BA2B8242417271D0067F14C /* CommunityCellViewModel.swift */,
 				0BA2B81A241725B60067F14C /* CommunityListViewModel.swift */,
 			);
@@ -431,6 +440,7 @@
 				0BA2B814241672430067F14C /* Contact.swift in Sources */,
 				0B0FB61A241729DE00ABD14D /* Community.swift in Sources */,
 				0B7DA86F2414C14200F0B210 /* PhoneContactViewController.swift in Sources */,
+				0B2374EA241A7F2400E072AC /* AddCommunityViewModel.swift in Sources */,
 				0B7DA8732414E5C800F0B210 /* PhoneContactBuilder.swift in Sources */,
 				0BA2B81D241725CD0067F14C /* CommunityTableViewCell.swift in Sources */,
 				0BA0C53D2414902F00DD8809 /* AppDelegate.swift in Sources */,
@@ -446,6 +456,8 @@
 				0BA2B821241725FF0067F14C /* CommunityBuilder.swift in Sources */,
 				0B7DA86D2414BF3000F0B210 /* PhoneContactCellViewModel.swift in Sources */,
 				0BA2B81B241725B60067F14C /* CommunityListViewModel.swift in Sources */,
+				0B2374F0241A841200E072AC /* CommunityRouter.swift in Sources */,
+				0B2374EE241A81FC00E072AC /* AddCommunityViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
