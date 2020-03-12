@@ -65,7 +65,7 @@ final class CommunityViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        // Route to community
     }
 }
 
@@ -74,7 +74,7 @@ final class CommunityViewController: UITableViewController {
 extension CommunityViewController {
 
     @objc func didPressAddCommunityButton() {
-        print("add community")
+        viewModel.addCommunity()
     }
 }
 
@@ -87,6 +87,16 @@ extension CommunityViewController: UISearchResultsUpdating {
         tableView.reloadData()
     }
 }
+
+// MARK: - AddCommunityViewModelOutput
+
+extension CommunityViewController: AddCommunityViewModelOutput {
+
+    func didSave(community: Community) {
+        tableView.reloadData()
+    }
+}
+
 
 private extension CommunityViewController {
 
