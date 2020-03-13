@@ -31,14 +31,7 @@ final class CommunityViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        viewModel.fetchCommunities { [weak self] error in
-            if let error = error {
-                // TODO: Handle error
-                print(error)
-                return
-            }
-            self?.tableView.reloadData()
-        }
+        fetchCommunities()
     }
 
     // MARK: - Table view data source
@@ -93,7 +86,7 @@ extension CommunityViewController: UISearchResultsUpdating {
 extension CommunityViewController: AddCommunityViewModelOutput {
 
     func didSave(community: Community) {
-        tableView.reloadData()
+        fetchCommunities()
     }
 }
 
@@ -122,5 +115,16 @@ private extension CommunityViewController {
 
     func setupSearchViewController() {
         // TODO: navigationItem.searchController
+    }
+
+    func fetchCommunities() {
+        viewModel.fetchCommunities { [weak self] error in
+            if let error = error {
+                // TODO: Handle error
+                print(error)
+                return
+            }
+            self?.tableView.reloadData()
+        }
     }
 }

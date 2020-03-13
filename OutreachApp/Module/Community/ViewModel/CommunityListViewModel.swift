@@ -35,7 +35,7 @@ final class CommunityListViewModel {
             switch result {
             case .success(let communities):
                 let viewModels = communities.compactMap(self.mapToViewModel)
-                self.communities.append(contentsOf: viewModels)
+                self.communities = viewModels
                 completion(nil)
             case .failure(let error):
                 completion(error)
