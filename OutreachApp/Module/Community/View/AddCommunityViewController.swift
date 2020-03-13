@@ -45,6 +45,11 @@ extension AddCommunityViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return textField.resignFirstResponder()
     }
+}
+
+// MARK: - Actions
+
+extension AddCommunityViewController {
 
     @objc func onTextFieldEnd(_ textField: UITextField) {
         guard let name = textField.text else { return }
@@ -55,16 +60,29 @@ extension AddCommunityViewController: UITextFieldDelegate {
         viewModel.save()
         dismiss(animated: true)
     }
+
+    @objc func didTapDismissButton() {
+        dismiss(animated: true)
+    }
 }
 
 private extension AddCommunityViewController {
 
     func setupViews() {
+        setupMainView()
+        setupNameTextField()
+        setupDoneButton()
+    }
+
+    func setupMainView() {
         title = viewModel.title
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
-        setupNameTextField()
-        setupDoneButton()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .close,
+            target: self,
+            action: #selector(didTapDismissButton)
+        )
     }
 
     func setupNameTextField() {

@@ -94,19 +94,23 @@ extension CommunityViewController: AddCommunityViewModelOutput {
 private extension CommunityViewController {
 
     func setupViews() {
+        setupNavigationBar()
         setupTableView()
         setupSearchViewController()
     }
 
-    func setupTableView() {
-        title = viewModel.title
-        view.backgroundColor = .white
+    func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .add,
             target: self,
             action: #selector(didPressAddCommunityButton)
         )
+    }
+
+    func setupTableView() {
+        title = viewModel.title
+        view.backgroundColor = .white
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(CommunityTableViewCell.self,
