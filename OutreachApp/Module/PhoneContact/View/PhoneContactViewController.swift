@@ -160,7 +160,7 @@ private extension PhoneContactViewController {
         NSLayoutConstraint.activate([
             doneButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
             doneButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
-            doneButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            doneButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             doneButton.heightAnchor.constraint(equalToConstant: 50)
         ])
         view.layoutIfNeeded()
