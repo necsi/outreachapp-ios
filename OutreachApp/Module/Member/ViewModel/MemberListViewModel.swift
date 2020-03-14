@@ -6,35 +6,39 @@
 //  Copyright © 2563 NECSI. All rights reserved.
 //
 
-import Foundation
+import Contacts
 
 final class MemberListViewModel {
 
     var title: String {
         // TODO: add community name
-        return community?.name ?? "Members"
+        return community.name ?? "Members"
     }
 
     var numberOfContacts: Int {
         return members.count
     }
 
+    var updateHandler: (() -> Void)?
+
     var router: MemberRouter?
 
+    private let community: Community
     private var members: [MemberCellViewModel] = []
-    private var community: Community?
     private let memberService: MemberService
 
-    init(memberService: MemberService) {
+    init(community: Community,
+         memberService: MemberService) {
+        self.community = community
         self.memberService = memberService
     }
 
     func fetchMembers(completion: @escaping (Error?) -> Void) {
-        memberService.fetchMembers { [weak self] result in
+        memberService.fetchMembers(fromCommunity: community) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let contacts):
-                let viewModels = contacts.compactMap(self.mapToViewModel)
+                let viewModels = contacts.map(self.mapToViewModel)
                 self.members = viewModels
                 completion(nil)
             case .failure(let error):
@@ -52,12 +56,21 @@ final class MemberListViewModel {
     }
 }
 
+// MARK: - PhoneContactModuleOutput
+
+extension MemberListViewModel: PhoneContactModuleOutput {
+
+    func didSelect(contacts: [CNContact]) {
+        memberService.save(contacts: contacts, in: community)
+        updateHandler?()
+    }
+}
+
 // MARK: - Private
 
 private extension MemberListViewModel {
 
-    func mapToViewModel(contact: Contact) -> MemberCellViewModel? {
-        guard let firstName = contact.firstName, let lastName = contact.lastName else { return nil }
-        return MemberCellViewModel(firstName: firstName, lastName: lastName)
+    func mapToViewModel(contact: CNContact) -> MemberCellViewModel {
+        return MemberCellViewModel(firstName: contact.givenName, lastName: contact.familyName)
     }
 }

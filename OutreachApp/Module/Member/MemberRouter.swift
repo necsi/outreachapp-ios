@@ -13,15 +13,19 @@ final class MemberRouter {
 
     private let phoneContactBuilder: PhoneContactBuilder
     private let viewController: MemberViewController
+    private let viewModel: MemberListViewModel
 
-    init(viewController: MemberViewController,
-         phoneContactBuilder: PhoneContactBuilder = PhoneContactBuilder()) {
-        self.viewController = viewController
+    init(phoneContactBuilder: PhoneContactBuilder = PhoneContactBuilder(),
+         viewController: MemberViewController,
+         viewModel: MemberListViewModel) {
         self.phoneContactBuilder = phoneContactBuilder
+        self.viewController = viewController
+        self.viewModel = viewModel
     }
 
     func goToAddMember() {
-        let phoneContactViewController = phoneContactBuilder.build()
-        self.viewController.navigationController?.pushViewController(phoneContactViewController, animated: true)
+        let viewController = phoneContactBuilder.build(output: viewModel)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        self.viewController.navigationController?.present(navigationController, animated: true)
     }
 }

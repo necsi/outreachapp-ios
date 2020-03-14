@@ -10,11 +10,11 @@ import UIKit
 
 struct MemberBuilder {
 
-    static func build() -> UIViewController {
+    static func build(withCommunity community: Community) -> UIViewController {
         let service = MemberServiceImpl()
-        let viewModel = MemberListViewModel(memberService: service)
+        let viewModel = MemberListViewModel(community: community, memberService: service)
         let viewController = MemberViewController(style: .plain,viewModel: viewModel)
-        let router = MemberRouter(viewController: viewController)
+        let router = MemberRouter(viewController: viewController, viewModel: viewModel)
         viewModel.router = router
         return viewController
     }

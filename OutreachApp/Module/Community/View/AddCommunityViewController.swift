@@ -10,8 +10,7 @@ import UIKit
 
 class AddCommunityViewController: UIViewController {
 
-    let viewModel: AddCommunityViewModel
-
+    private let viewModel: AddCommunityViewModel
     private let nameTextField = UITextField()
     private let doneButton = UIButton()
 
@@ -102,6 +101,7 @@ private extension AddCommunityViewController {
     }
 
     func setupDoneButton() {
+        // TODO: Extract to view
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButton.addTarget(self, action: #selector(didTapDone), for: .touchUpInside)
         doneButton.backgroundColor = .blue

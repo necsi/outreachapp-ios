@@ -33,6 +33,7 @@ final class MemberViewController: UITableViewController {
         super.viewDidLoad()
         setupViews()
         fetchMembers()
+        viewModel.updateHandler = fetchMembers
     }
 
     // MARK: - Table view data source
