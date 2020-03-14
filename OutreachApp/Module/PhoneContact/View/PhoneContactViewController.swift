@@ -35,6 +35,11 @@ final class PhoneContactViewController: UITableViewController {
         fetchPhoneContacts()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        view.bringSubviewToFront(doneButton)
+    }
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -153,11 +158,12 @@ private extension PhoneContactViewController {
         doneButton.layer.cornerRadius = 10
         view.addSubview(doneButton)
         NSLayoutConstraint.activate([
-            doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            doneButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
+            doneButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
+            doneButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            doneButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             doneButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+        view.layoutIfNeeded()
     }
 
     func fetchPhoneContacts() {
