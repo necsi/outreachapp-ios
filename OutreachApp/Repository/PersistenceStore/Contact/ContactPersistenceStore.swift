@@ -103,6 +103,12 @@ final class ContactPersistenceStore: ContactPersistenceStoreProtocol {
         return resource
     }
 
+    func delete<Resource: NSManagedObject>(_ object: Resource,
+                                           in context: NSManagedObjectContext? = nil) {
+        let context = context ?? mainContext
+        context.delete(object)
+    }
+
     func reset(context: NSManagedObjectContext? = nil) {
         let context = context ?? mainContext
         context.reset()
