@@ -41,7 +41,7 @@ final class ContactPersistenceStore: ContactPersistenceStoreProtocol {
     func save(context: NSManagedObjectContext? = nil) throws {
         let context = context ?? mainContext
         var error: Error?
-        context.mergePolicy = NSMergePolicy.overwrite
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy//NSMergePolicy.overwrite
         context.performAndWait {
             do {
                 try context.save()
@@ -60,7 +60,7 @@ final class ContactPersistenceStore: ContactPersistenceStoreProtocol {
         var resource: Resource?
         var error: Error?
         let fetchRequest: NSFetchRequest<Resource> = Resource.fetchRequest() as! NSFetchRequest<Resource>
-        let predicate = NSPredicate(format: "identifier == %d", identifier)
+        let predicate = NSPredicate(format: "identifier == %@", identifier)
         fetchRequest.predicate = predicate
 
         context.performAndWait {

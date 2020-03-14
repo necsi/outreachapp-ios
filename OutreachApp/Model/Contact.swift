@@ -11,7 +11,7 @@ import Contacts
 
 extension Contact {
 
-    convenience init(identifier: UUID = UUID(),
+    convenience init(identifier: String,
                      firstName: String,
                      lastName: String,
                      context: NSManagedObjectContext = ContactPersistenceStore.shared.mainContext) {
@@ -22,7 +22,8 @@ extension Contact {
     }
 
     convenience init(cnContact: CNContact) {
-        self.init(firstName: cnContact.givenName,
+        self.init(identifier: cnContact.identifier,
+                  firstName: cnContact.givenName,
                   lastName: cnContact.familyName)
     }
 }

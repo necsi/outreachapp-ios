@@ -8,6 +8,7 @@
 
 final class PhoneContactCellViewModel {
 
+    let identifier: String
     let firstName: String
     let lastName: String
     var fullName: String {
@@ -16,7 +17,8 @@ final class PhoneContactCellViewModel {
     let notes: [String] = []
     var isSelected = false
 
-    init(firstName: String, lastName: String) {
+    init(identifier: String, firstName: String, lastName: String) {
+        self.identifier = identifier
         self.firstName = firstName
         self.lastName = lastName
     }
