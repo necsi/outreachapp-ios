@@ -90,6 +90,7 @@ extension CommunityViewController: AddCommunityViewModelOutput {
     }
 }
 
+// MARK: - Private
 
 private extension CommunityViewController {
 

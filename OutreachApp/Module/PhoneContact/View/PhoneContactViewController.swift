@@ -106,6 +106,8 @@ extension PhoneContactViewController: CNContactViewControllerDelegate {
     }
 }
 
+// MARK: - Private
+
 private extension PhoneContactViewController {
 
     func setupViews() {
