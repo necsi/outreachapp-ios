@@ -6,23 +6,34 @@
 //  Copyright © 2563 NECSI. All rights reserved.
 //
 
-import Foundation
+import Contacts
+
+protocol PhoneContactModuleOutput: class {
+
+    func didSelect(contacts: [CNContact])
+}
 
 final class PhoneContactListViewModel {
 
     var title: String {
-        // TODO: Internationalize
+        // TODO: Localize
         return "Phone Contacts"
     }
 
-    var phoneContacts: [PhoneContactCellViewModel] = []
-
-    var numberOfContacts: Int {
-        return phoneContacts.count
+    var buttonText: String {
+        // TODO: Localize
+        return "Done"
     }
 
+    var numberOfContacts: Int {
+        return phoneContactViewModels.count
+    }
+
+    var output: PhoneContactModuleOutput?
     var router: PhoneContactRouter?
 
+    private var phoneContactViewModels: [PhoneContactCellViewModel] = []
+    private var contacts: [CNContact] = []
     private let phoneContactService: PhoneContactService
 
     init(phoneContactService: PhoneContactService) {
@@ -34,8 +45,9 @@ final class PhoneContactListViewModel {
             guard let self = self else { return }
             switch result {
             case .success(let contacts):
+                self.contacts = contacts
                 let viewModels = contacts.compactMap(self.mapToViewModel)
-                self.phoneContacts = viewModels
+                self.phoneContactViewModels = viewModels
                 completion(nil)
             case .failure(let error):
                 completion(error)
@@ -48,7 +60,13 @@ final class PhoneContactListViewModel {
     }
 
     func cellViewModel(at indexPath: IndexPath) -> PhoneContactCellViewModel {
-        return phoneContacts[indexPath.row]
+        return phoneContactViewModels[indexPath.row]
+    }
+
+    func finish() {
+        let contacts = filterSelected(cellViewModels: self.phoneContactViewModels)
+        output?.didSelect(contacts: contacts)
+        router?.dismiss()
     }
 }
 
@@ -56,8 +74,17 @@ final class PhoneContactListViewModel {
 
 private extension PhoneContactListViewModel {
 
-    func mapToViewModel(contact: Contact) -> PhoneContactCellViewModel? {
-        guard let firstName = contact.firstName, let lastName = contact.lastName else { return nil }
-        return PhoneContactCellViewModel(firstName: firstName, lastName: lastName)
+    func mapToViewModel(contact: CNContact) -> PhoneContactCellViewModel? {
+        return PhoneContactCellViewModel(
+            identifier: contact.identifier,
+            firstName: contact.givenName,
+            lastName: contact.familyName
+        )
+    }
+
+    func filterSelected(cellViewModels: [PhoneContactCellViewModel]) -> [CNContact] {
+        return zip(cellViewModels, contacts)
+            .filter { $0.0.isSelected }
+            .map { $0.1 }
     }
 }

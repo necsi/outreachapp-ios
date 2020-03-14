@@ -20,10 +20,14 @@ final class PhoneContactRouter {
     func goToAddPhoneContact() {
         if #available(iOS 9.0, *) {
             let store = CNContactStore()
-            let controller = CNContactViewController(forNewContact: nil)
-            controller.contactStore = store
-            controller.delegate = viewController
-            self.viewController.navigationController?.pushViewController(controller, animated: true)
+            let viewController = CNContactViewController(forNewContact: nil)
+            viewController.contactStore = store
+            viewController.delegate = self.viewController
+            self.viewController.navigationController?.pushViewController(viewController, animated: true)
         }
+    }
+
+    func dismiss() {
+        viewController.dismiss(animated: true)
     }
 }

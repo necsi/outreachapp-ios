@@ -15,14 +15,13 @@ final class CommunityListViewModel {
         return "Communities"
     }
 
-    var communities: [CommunityCellViewModel] = []
-
     var numberOfCommunities: Int {
         return communities.count
     }
 
     var router: CommunityRouter?
 
+    private var communities: [CommunityCellViewModel] = []
     private let communityService: CommunityService
 
     init(communityService: CommunityService) {

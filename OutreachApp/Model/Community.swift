@@ -12,7 +12,7 @@ import Contacts
 
 extension Community {
 
-    convenience init(identifier: UUID = UUID(),
+    convenience init(identifier: String = UUID().uuidString,
                      name: String,
                      context: NSManagedObjectContext = ContactPersistenceStore.shared.mainContext) {
         self.init(context: context)

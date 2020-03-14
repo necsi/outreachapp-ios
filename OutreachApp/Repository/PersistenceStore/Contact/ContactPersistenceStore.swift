@@ -11,7 +11,7 @@ import CoreData
 protocol ContactPersistenceStoreProtocol {
 
     func save(context: NSManagedObjectContext?) throws
-    func fetch<Resource: NSManagedObject>(withId identifier: Int,
+    func fetch<Resource: NSManagedObject>(withId identifier: String,
                                           context: NSManagedObjectContext?) throws -> Resource?
     func fetch<Resource: NSManagedObject>(recent fetchLimit: Int,
                                           in context: NSManagedObjectContext?) throws -> [Resource]
@@ -41,7 +41,7 @@ final class ContactPersistenceStore: ContactPersistenceStoreProtocol {
     func save(context: NSManagedObjectContext? = nil) throws {
         let context = context ?? mainContext
         var error: Error?
-        context.mergePolicy = NSMergePolicy.overwrite
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy//NSMergePolicy.overwrite
         context.performAndWait {
             do {
                 try context.save()
@@ -54,13 +54,13 @@ final class ContactPersistenceStore: ContactPersistenceStoreProtocol {
         if let error = error { throw error }
     }
 
-    func fetch<Resource: NSManagedObject>(withId identifier: Int,
+    func fetch<Resource: NSManagedObject>(withId identifier: String,
                                           context: NSManagedObjectContext? = nil) throws -> Resource? {
         let context = context ?? mainContext
         var resource: Resource?
         var error: Error?
         let fetchRequest: NSFetchRequest<Resource> = Resource.fetchRequest() as! NSFetchRequest<Resource>
-        let predicate = NSPredicate(format: "identifier == %d", identifier)
+        let predicate = NSPredicate(format: "identifier == %@", identifier)
         fetchRequest.predicate = predicate
 
         context.performAndWait {
@@ -101,5 +101,16 @@ final class ContactPersistenceStore: ContactPersistenceStoreProtocol {
         if let error = error { throw error }
 
         return resource
+    }
+
+    func delete<Resource: NSManagedObject>(_ object: Resource,
+                                           in context: NSManagedObjectContext? = nil) {
+        let context = context ?? mainContext
+        context.delete(object)
+    }
+
+    func reset(context: NSManagedObjectContext? = nil) {
+        let context = context ?? mainContext
+        context.reset()
     }
 }

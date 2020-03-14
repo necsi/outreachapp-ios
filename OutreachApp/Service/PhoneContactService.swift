@@ -11,12 +11,13 @@ import CoreData
 
 protocol PhoneContactService {
 
-    func fetchContacts(completion: @escaping (Result<[Contact], Error>) -> Void)
+    func fetchContacts(completion: @escaping (Result<[CNContact], Error>) -> Void)
 }
 
 final class PhoneContactServiceImpl: PhoneContactService {
 
-    private let store = CNContactStore()
+    private let contactStore: CNContactStore
+    private let persistentStore: ContactPersistenceStore
     private let contactKeys = [
         CNContactGivenNameKey,
         CNContactFamilyNameKey,
@@ -32,8 +33,14 @@ final class PhoneContactServiceImpl: PhoneContactService {
         CNContactThumbnailImageDataKey
     ]
 
-    func fetchContacts(completion: @escaping (Result<[Contact], Error>) -> Void) {
-        store.requestAccess(for: .contacts) { [weak self] (granted, error) in
+    init(contactStore: CNContactStore = CNContactStore(),
+         persistentStore: ContactPersistenceStore = ContactPersistenceStore.shared) {
+        self.contactStore = contactStore
+        self.persistentStore = persistentStore
+    }
+
+    func fetchContacts(completion: @escaping (Result<[CNContact], Error>) -> Void) {
+        contactStore.requestAccess(for: .contacts) { [weak self] (granted, error) in
             guard let self = self else { return }
 
             if let error = error {
@@ -42,11 +49,11 @@ final class PhoneContactServiceImpl: PhoneContactService {
             }
 
             if granted {
-                var contacts = [Contact]()
+                var contacts = [CNContact]()
                 let request = CNContactFetchRequest(keysToFetch: self.contactKeys as [CNKeyDescriptor])
                 do {
-                    try self.store.enumerateContacts(with: request) { (cnContact, _) in
-                        contacts.append(Contact(cnContact: cnContact))
+                    try self.contactStore.enumerateContacts(with: request) { (cnContact, _) in
+                        contacts.append(cnContact)
                     }
                     DispatchQueue.main.async {
                         completion(Result.success(contacts))
@@ -62,6 +69,10 @@ final class PhoneContactServiceImpl: PhoneContactService {
                 }
             }
         }
+    }
+
+    func delete(contact: Contact) {
+        persistentStore.delete(contact)
     }
 }
 
