@@ -6,6 +6,7 @@
 //  Copyright © 2563 NECSI. All rights reserved.
 //
 
+import ContactsUI
 import UIKit
 
 final class PhoneContactViewController: UITableViewController {
@@ -31,14 +32,7 @@ final class PhoneContactViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        viewModel.fetchPhoneContacts { [weak self] error in
-            if let error = error {
-                // TODO: Handle error
-                print(error)
-                return
-            }
-            self?.tableView.reloadData()
-        }
+        fetchPhoneContacts()
     }
 
     // MARK: - Table view data source
@@ -84,6 +78,17 @@ final class PhoneContactViewController: UITableViewController {
     }
 }
 
+// MARK: - Actions
+
+extension PhoneContactViewController {
+
+    @objc func didPressAddPhoneContactButton() {
+        viewModel.addPhoneContact()
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+
 extension PhoneContactViewController: UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
@@ -92,17 +97,37 @@ extension PhoneContactViewController: UISearchResultsUpdating {
     }
 }
 
+// MARK: - CNContactViewControllerDelegate
+
+extension PhoneContactViewController: CNContactViewControllerDelegate {
+
+    func contactViewController(_ viewController: CNContactViewController, didCompleteWith contact: CNContact?) {
+        fetchPhoneContacts()
+    }
+}
+
+// MARK: - Private
+
 private extension PhoneContactViewController {
 
     func setupViews() {
+        setupNavigationBar()
         setupTableView()
         setupSearchViewController()
+    }
+
+    func setupNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(didPressAddPhoneContactButton)
+        )
     }
 
     func setupTableView() {
         title = viewModel.title
         view.backgroundColor = .white
-        navigationController?.navigationBar.prefersLargeTitles = true
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(PhoneContactTableViewCell.self,
@@ -111,5 +136,16 @@ private extension PhoneContactViewController {
 
     func setupSearchViewController() {
         // TODO: navigationItem.searchController
+    }
+
+    func fetchPhoneContacts() {
+        viewModel.fetchPhoneContacts { [weak self] error in
+            if let error = error {
+                // TODO: Handle error
+                print(error)
+                return
+            }
+            self?.tableView.reloadData()
+        }
     }
 }

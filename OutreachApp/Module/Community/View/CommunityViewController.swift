@@ -31,14 +31,7 @@ final class CommunityViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        viewModel.fetchCommunities { [weak self] error in
-            if let error = error {
-                // TODO: Handle error
-                print(error)
-                return
-            }
-            self?.tableView.reloadData()
-        }
+        fetchCommunities()
     }
 
     // MARK: - Table view data source
@@ -93,27 +86,32 @@ extension CommunityViewController: UISearchResultsUpdating {
 extension CommunityViewController: AddCommunityViewModelOutput {
 
     func didSave(community: Community) {
-        tableView.reloadData()
+        fetchCommunities()
     }
 }
 
+// MARK: - Private
 
 private extension CommunityViewController {
 
     func setupViews() {
+        setupNavigationBar()
         setupTableView()
         setupSearchViewController()
     }
 
-    func setupTableView() {
-        title = viewModel.title
-        view.backgroundColor = .white
+    func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .add,
             target: self,
             action: #selector(didPressAddCommunityButton)
         )
+    }
+
+    func setupTableView() {
+        title = viewModel.title
+        view.backgroundColor = .white
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(CommunityTableViewCell.self,
@@ -122,5 +120,16 @@ private extension CommunityViewController {
 
     func setupSearchViewController() {
         // TODO: navigationItem.searchController
+    }
+
+    func fetchCommunities() {
+        viewModel.fetchCommunities { [weak self] error in
+            if let error = error {
+                // TODO: Handle error
+                print(error)
+                return
+            }
+            self?.tableView.reloadData()
+        }
     }
 }

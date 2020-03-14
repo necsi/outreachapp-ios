@@ -48,12 +48,18 @@ final class PhoneContactServiceImpl: PhoneContactService {
                     try self.store.enumerateContacts(with: request) { (cnContact, _) in
                         contacts.append(Contact(cnContact: cnContact))
                     }
-                    completion(Result.success(contacts))
+                    DispatchQueue.main.async {
+                        completion(Result.success(contacts))
+                    }
                 } catch let error {
-                    completion(Result.failure(error))
+                    DispatchQueue.main.async {
+                        completion(Result.failure(error))
+                    }
                 }
             } else {
-                completion(Result.failure(PhoneContactError.accessDenied))
+                DispatchQueue.main.async {
+                    completion(Result.failure(PhoneContactError.accessDenied))
+                }
             }
         }
     }

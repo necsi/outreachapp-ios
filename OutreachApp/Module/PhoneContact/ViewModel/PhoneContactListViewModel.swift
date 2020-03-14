@@ -21,6 +21,8 @@ final class PhoneContactListViewModel {
         return phoneContacts.count
     }
 
+    var router: PhoneContactRouter?
+
     private let phoneContactService: PhoneContactService
 
     init(phoneContactService: PhoneContactService) {
@@ -33,12 +35,16 @@ final class PhoneContactListViewModel {
             switch result {
             case .success(let contacts):
                 let viewModels = contacts.compactMap(self.mapToViewModel)
-                self.phoneContacts.append(contentsOf: viewModels)
+                self.phoneContacts = viewModels
                 completion(nil)
             case .failure(let error):
                 completion(error)
             }
         }
+    }
+
+    func addPhoneContact() {
+        router?.goToAddPhoneContact()
     }
 
     func cellViewModel(at indexPath: IndexPath) -> PhoneContactCellViewModel {
