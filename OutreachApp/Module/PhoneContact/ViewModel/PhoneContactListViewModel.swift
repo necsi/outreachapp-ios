@@ -15,14 +15,13 @@ final class PhoneContactListViewModel {
         return "Phone Contacts"
     }
 
-    var phoneContacts: [PhoneContactCellViewModel] = []
-
     var numberOfContacts: Int {
         return phoneContacts.count
     }
 
     var router: PhoneContactRouter?
 
+    private var phoneContacts: [PhoneContactCellViewModel] = []
     private let phoneContactService: PhoneContactService
 
     init(phoneContactService: PhoneContactService) {
