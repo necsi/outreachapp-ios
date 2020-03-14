@@ -11,7 +11,7 @@ import CoreData
 protocol ContactPersistenceStoreProtocol {
 
     func save(context: NSManagedObjectContext?) throws
-    func fetch<Resource: NSManagedObject>(withId identifier: Int,
+    func fetch<Resource: NSManagedObject>(withId identifier: String,
                                           context: NSManagedObjectContext?) throws -> Resource?
     func fetch<Resource: NSManagedObject>(recent fetchLimit: Int,
                                           in context: NSManagedObjectContext?) throws -> [Resource]
@@ -54,7 +54,7 @@ final class ContactPersistenceStore: ContactPersistenceStoreProtocol {
         if let error = error { throw error }
     }
 
-    func fetch<Resource: NSManagedObject>(withId identifier: Int,
+    func fetch<Resource: NSManagedObject>(withId identifier: String,
                                           context: NSManagedObjectContext? = nil) throws -> Resource? {
         let context = context ?? mainContext
         var resource: Resource?
@@ -101,5 +101,10 @@ final class ContactPersistenceStore: ContactPersistenceStoreProtocol {
         if let error = error { throw error }
 
         return resource
+    }
+
+    func reset(context: NSManagedObjectContext? = nil) {
+        let context = context ?? mainContext
+        context.reset()
     }
 }
