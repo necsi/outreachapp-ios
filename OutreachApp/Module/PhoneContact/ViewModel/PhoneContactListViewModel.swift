@@ -60,7 +60,13 @@ final class PhoneContactListViewModel {
     }
 
     func cellViewModel(at indexPath: IndexPath) -> PhoneContactCellViewModel {
-        return phoneContacts[indexPath.row]
+        return phoneContactViewModels[indexPath.row]
+    }
+
+    func finish() {
+        let contacts = filterSelected(cellViewModels: self.phoneContactViewModels)
+        output?.didSelect(contacts: contacts)
+        router?.dismiss()
     }
 }
 

@@ -82,8 +82,12 @@ final class PhoneContactViewController: UITableViewController {
 
 extension PhoneContactViewController {
 
-    @objc func didPressAddPhoneContactButton() {
+    @objc func didPressAddPhoneContact() {
         viewModel.addPhoneContact()
+    }
+
+    @objc func didTapDone() {
+        viewModel.finish()
     }
 }
 
@@ -114,6 +118,7 @@ private extension PhoneContactViewController {
         setupNavigationBar()
         setupTableView()
         setupSearchViewController()
+        setupDoneButton()
     }
 
     func setupNavigationBar() {
@@ -136,6 +141,23 @@ private extension PhoneContactViewController {
 
     func setupSearchViewController() {
         // TODO: navigationItem.searchController
+    }
+
+    func setupDoneButton() {
+        // TODO: Extract to view
+        doneButton.translatesAutoresizingMaskIntoConstraints = false
+        doneButton.addTarget(self, action: #selector(didTapDone), for: .touchUpInside)
+        doneButton.backgroundColor = .blue
+        doneButton.setTitle(viewModel.buttonText, for: .normal)
+        doneButton.setTitleColor(.white, for: .normal)
+        doneButton.layer.cornerRadius = 10
+        view.addSubview(doneButton)
+        NSLayoutConstraint.activate([
+            doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            doneButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
+            doneButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
     }
 
     func fetchPhoneContacts() {
