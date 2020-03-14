@@ -13,6 +13,9 @@ struct PhoneContactBuilder {
     static func build() -> UIViewController {
         let service = PhoneContactServiceImpl()
         let viewModel = PhoneContactListViewModel(phoneContactService: service)
-        return PhoneContactViewController(style: .plain,viewModel: viewModel)
+        let viewController = PhoneContactViewController(style: .plain,viewModel: viewModel)
+        let router = PhoneContactRouter(viewController: viewController)
+        viewModel.router = router
+        return viewController
     }
 }

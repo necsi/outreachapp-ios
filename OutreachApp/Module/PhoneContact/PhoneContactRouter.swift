@@ -23,7 +23,6 @@ final class PhoneContactRouter {
             let controller = CNContactViewController(forNewContact: nil)
             controller.contactStore = store
             controller.delegate = viewController
-            self.viewController.navigationController?.setNavigationBarHidden(false, animated: true)
             self.viewController.navigationController?.pushViewController(controller, animated: true)
         }
     }
