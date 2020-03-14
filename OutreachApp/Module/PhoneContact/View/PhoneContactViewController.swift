@@ -17,7 +17,7 @@ final class PhoneContactViewController: UITableViewController {
         sc.obscuresBackgroundDuringPresentation = false
         return sc
     }()
-
+    private let doneButton = UIButton()
     private let viewModel: PhoneContactListViewModel
 
     init(style: UITableView.Style, viewModel: PhoneContactListViewModel) {
@@ -121,7 +121,7 @@ private extension PhoneContactViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .add,
             target: self,
-            action: #selector(didPressAddPhoneContactButton)
+            action: #selector(didPressAddPhoneContact)
         )
     }
 
