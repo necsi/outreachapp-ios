@@ -10,7 +10,7 @@ import UIKit
 
 struct PhoneContactBuilder {
 
-    static func build() -> UIViewController {
+    func build() -> UIViewController {
         let service = PhoneContactServiceImpl()
         let viewModel = PhoneContactListViewModel(phoneContactService: service)
         let viewController = PhoneContactViewController(style: .plain,viewModel: viewModel)
