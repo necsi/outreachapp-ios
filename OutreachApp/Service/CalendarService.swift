@@ -51,12 +51,8 @@ final class CalendarServiceImpl: CalendarService {
                 }
                 completion(Result.success(true))
             } else {
-                completion(Result.failure(CalendarError.failedToAddEvent))
+                completion(Result.failure(ServiceError.saveError))
             }
         }
     }
-}
-
-fileprivate enum CalendarError: Error {
-    case failedToAddEvent
 }
