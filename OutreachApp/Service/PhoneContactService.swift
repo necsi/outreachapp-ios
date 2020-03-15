@@ -18,20 +18,6 @@ final class PhoneContactServiceImpl: PhoneContactService {
 
     private let contactStore: CNContactStore
     private let persistentStore: ContactPersistenceStore
-    private let contactKeys = [
-        CNContactGivenNameKey,
-        CNContactFamilyNameKey,
-        CNContactPhoneNumbersKey,
-        CNContactBirthdayKey,
-        CNContactOrganizationNameKey,
-        CNContactJobTitleKey,
-        CNContactMiddleNameKey,
-        CNContactEmailAddressesKey,
-        CNContactDepartmentNameKey,
-        CNContactPhoneNumbersKey,
-        CNContactImageDataKey,
-        CNContactThumbnailImageDataKey
-    ]
 
     init(contactStore: CNContactStore = CNContactStore(),
          persistentStore: ContactPersistenceStore = ContactPersistenceStore.shared) {
@@ -50,7 +36,7 @@ final class PhoneContactServiceImpl: PhoneContactService {
 
             if granted {
                 var contacts = [CNContact]()
-                let request = CNContactFetchRequest(keysToFetch: self.contactKeys as [CNKeyDescriptor])
+                let request = CNContactFetchRequest(keysToFetch: CNContact.defaultKeys)
                 do {
                     try self.contactStore.enumerateContacts(with: request) { (cnContact, _) in
                         contacts.append(cnContact)
@@ -65,7 +51,7 @@ final class PhoneContactServiceImpl: PhoneContactService {
                 }
             } else {
                 DispatchQueue.main.async {
-                    completion(Result.failure(PhoneContactError.accessDenied))
+                    completion(Result.failure(ServiceError.accessDenied))
                 }
             }
         }
@@ -74,8 +60,4 @@ final class PhoneContactServiceImpl: PhoneContactService {
     func delete(contact: Contact) {
         persistentStore.delete(contact)
     }
-}
-
-fileprivate enum PhoneContactError: Error {
-    case accessDenied
 }

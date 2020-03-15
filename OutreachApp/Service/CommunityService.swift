@@ -11,6 +11,8 @@ import CoreData
 protocol CommunityService {
 
     func fetchCommunities(completion: @escaping (Result<[Community], Error>) -> Void)
+
+    func fetchCommunity(withId id: String, completion: @escaping (Result<Community, Error>) -> Void)
 }
 
 final class CommunityServiceImpl: CommunityService {
@@ -25,6 +27,18 @@ final class CommunityServiceImpl: CommunityService {
         do {
             let communities: [Community] = try persistenceStore.fetch()
             completion(Result.success(communities))
+        } catch {
+            completion(Result.failure(error))
+        }
+    }
+
+    func fetchCommunity(withId id: String, completion: @escaping (Result<Community, Error>) -> Void) {
+        do {
+            guard let community: Community = try persistenceStore.fetch(withId: id) else {
+                completion(Result.failure(ServiceError.fetchError))
+                return
+            }
+            completion(Result.success(community))
         } catch {
             completion(Result.failure(error))
         }

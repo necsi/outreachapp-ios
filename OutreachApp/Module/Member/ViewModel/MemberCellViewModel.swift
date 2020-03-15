@@ -8,6 +8,7 @@
 
 final class MemberCellViewModel {
 
+    let identifier: String
     let firstName: String
     let lastName: String
     var fullName: String {
@@ -15,7 +16,10 @@ final class MemberCellViewModel {
     }
     let notes: [String] = []
 
-    init(firstName: String, lastName: String) {
+    init(identifier: String,
+         firstName: String,
+         lastName: String) {
+        self.identifier = identifier
         self.firstName = firstName
         self.lastName = lastName
     }

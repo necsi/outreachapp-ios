@@ -54,6 +54,17 @@ final class MemberListViewModel {
     func cellViewModel(at indexPath: IndexPath) -> MemberCellViewModel {
         return members[indexPath.row]
     }
+
+    func goToMember(at indexPath: IndexPath) {
+        let memberId = members[indexPath.row].identifier
+        memberService.fetchMember(withId: memberId) { [weak self] result in
+            guard let self = self, let contact = try? result.get() else {
+                assertionFailure("Failed to fetch member with id \(memberId)")
+                return
+            }
+            self.router?.goTo(contact: contact)
+        }
+    }
 }
 
 // MARK: - PhoneContactModuleOutput
@@ -71,6 +82,8 @@ extension MemberListViewModel: PhoneContactModuleOutput {
 private extension MemberListViewModel {
 
     func mapToViewModel(contact: CNContact) -> MemberCellViewModel {
-        return MemberCellViewModel(firstName: contact.givenName, lastName: contact.familyName)
+        return MemberCellViewModel(identifier: contact.identifier,
+                                   firstName: contact.givenName,
+                                   lastName: contact.familyName)
     }
 }

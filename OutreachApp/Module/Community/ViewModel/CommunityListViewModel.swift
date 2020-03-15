@@ -16,12 +16,12 @@ final class CommunityListViewModel {
     }
 
     var numberOfCommunities: Int {
-        return communities.count
+        return cellViewModels.count
     }
 
     var router: CommunityRouter?
 
-    private var communities: [CommunityCellViewModel] = []
+    private var cellViewModels: [CommunityCellViewModel] = []
     private let communityService: CommunityService
 
     init(communityService: CommunityService) {
@@ -34,7 +34,7 @@ final class CommunityListViewModel {
             switch result {
             case .success(let communities):
                 let viewModels = communities.compactMap(self.mapToViewModel)
-                self.communities = viewModels
+                self.cellViewModels = viewModels
                 completion(nil)
             case .failure(let error):
                 completion(error)
@@ -43,11 +43,22 @@ final class CommunityListViewModel {
     }
 
     func cellViewModel(at indexPath: IndexPath) -> CommunityCellViewModel {
-        return communities[indexPath.row]
+        return cellViewModels[indexPath.row]
     }
 
     func addCommunity() {
         router?.goToAddCommunity()
+    }
+
+    func goToCommunity(at indexPath: IndexPath) {
+        let communityId = cellViewModels[indexPath.row].identifier
+        communityService.fetchCommunity(withId: communityId) { [weak self] result in
+            guard let self = self, let community = try? result.get() else {
+                assertionFailure("Failed to fetch community with id \(communityId)")
+                return
+            }
+            self.router?.goTo(community: community)
+        }
     }
 }
 
@@ -56,7 +67,7 @@ final class CommunityListViewModel {
 private extension CommunityListViewModel {
 
     func mapToViewModel(community: Community) -> CommunityCellViewModel? {
-        guard let name = community.name else { return nil }
-        return CommunityCellViewModel(name: name)
+        guard let id = community.identifier, let name = community.name else { return nil }
+        return CommunityCellViewModel(identifier: id, name: name)
     }
 }

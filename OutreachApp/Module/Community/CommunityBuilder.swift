@@ -14,7 +14,7 @@ struct CommunityBuilder {
         let service = CommunityServiceImpl()
         let viewModel = CommunityListViewModel(communityService: service)
         let viewController = CommunityViewController(style: .plain,viewModel: viewModel)
-        let router = CommunityRouter(communityList: viewController, builder: self)
+        let router = CommunityRouter(communityList: viewController)
         viewModel.router = router
         return viewController
     }

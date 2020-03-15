@@ -16,8 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UISplitViewControllerDe
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         // Test your modules here:
-        let community: Community = try! ContactPersistenceStore.shared.fetch(withId: "A5F3EAFB-56DC-4F9F-84DB-2FD81469C243")!
-        let rootViewController = MemberBuilder.build(withCommunity: community)
+        let rootViewController = CommunityBuilder().buildCommunityList()
         let navigationController = UINavigationController(rootViewController: rootViewController)
         navigationController.view.backgroundColor = .white
         window?.rootViewController = navigationController

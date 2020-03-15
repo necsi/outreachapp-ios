@@ -8,9 +8,12 @@
 
 final class CommunityCellViewModel {
 
+    let identifier: String
     let name: String
 
-    init(name: String) {
+    init(identifier: String,
+         name: String) {
+        self.identifier = identifier
         self.name = name
     }
 }
