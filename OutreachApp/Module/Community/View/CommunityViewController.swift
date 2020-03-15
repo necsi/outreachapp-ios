@@ -58,7 +58,7 @@ final class CommunityViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Route to community
+        viewModel.goToCommunity(at: indexPath)
     }
 }
 

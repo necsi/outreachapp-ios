@@ -10,19 +10,27 @@ import UIKit
 
 final class CommunityRouter {
 
-    private let communityList: CommunityViewController
+    private let communityListViewController: CommunityViewController
     private var addCommunity: UIViewController?
-    private let builder: CommunityBuilder
+    private let communityBuilder: CommunityBuilder
+    private let memberBuilder: MemberBuilder
 
     init(communityList: CommunityViewController,
-         builder: CommunityBuilder) {
-        self.communityList = communityList
-        self.builder = builder
+         communityBuilder: CommunityBuilder = CommunityBuilder(),
+         memberBuilder: MemberBuilder = MemberBuilder()) {
+        self.communityListViewController = communityList
+        self.communityBuilder = communityBuilder
+        self.memberBuilder = memberBuilder
     }
 
     func goToAddCommunity() {
-        let viewController = builder.buildAddCommunity(output: communityList)
+        let viewController = communityBuilder.buildAddCommunity(output: communityListViewController)
         self.addCommunity = viewController
-        communityList.present(viewController, animated: true)
+        communityListViewController.present(viewController, animated: true)
+    }
+
+    func goTo(community: Community) {
+        let viewController = memberBuilder.build(withCommunity: community)
+        communityListViewController.navigationController?.pushViewController(viewController, animated: true)
     }
 }
