@@ -7,11 +7,14 @@
 //
 
 import Contacts
+import ContactsUI
 import CoreData
 
 protocol MemberService {
 
     func fetchMembers(fromCommunity community: Community, completion: @escaping (Result<[CNContact], Error>) -> Void)
+
+    func fetchMember(withId id: String, completion: @escaping (Result<CNContact, Error>) -> Void)
 
     func save(contacts: [CNContact], in community: Community)
 }
@@ -20,20 +23,6 @@ final class MemberServiceImpl: MemberService {
 
     private let cnContactStore: CNContactStore
     private let persistenceStore: ContactPersistenceStore
-    private let contactKeys = [
-        CNContactGivenNameKey,
-        CNContactFamilyNameKey,
-        CNContactPhoneNumbersKey,
-        CNContactBirthdayKey,
-        CNContactOrganizationNameKey,
-        CNContactJobTitleKey,
-        CNContactMiddleNameKey,
-        CNContactEmailAddressesKey,
-        CNContactDepartmentNameKey,
-        CNContactPhoneNumbersKey,
-        CNContactImageDataKey,
-        CNContactThumbnailImageDataKey
-    ]
 
     init(cnContactStore: CNContactStore = CNContactStore(),
          persistenceStore: ContactPersistenceStore = ContactPersistenceStore.shared) {
@@ -45,10 +34,18 @@ final class MemberServiceImpl: MemberService {
         guard let id = community.identifier else { return }
         do {
             let community: Community? = try persistenceStore.fetch(withId: id)
-            let communities: [Community] = try persistenceStore.fetch()
             let members = community?.members?.allObjects as? [Contact] ?? []
-            let cnContacts = fetchCnContacts(from: members) ?? []
+            let cnContacts = try fetchCnContacts(from: members)
             completion(Result.success(cnContacts))
+        } catch {
+            completion(Result.failure(error))
+        }
+    }
+
+    func fetchMember(withId id: String, completion: @escaping (Result<CNContact, Error>) -> Void) {
+        do {
+            let contact = try fetchCnContact(withId: id)
+            completion(Result.success(contact))
         } catch {
             completion(Result.failure(error))
         }
@@ -71,9 +68,19 @@ final class MemberServiceImpl: MemberService {
 
 private extension MemberServiceImpl {
 
-    func fetchCnContacts(from members: [Contact]) -> [CNContact]? {
+    func fetchCnContacts(from members: [Contact]) throws -> [CNContact] {
         let identifiers = members.compactMap { $0.identifier }
         let predicate: NSPredicate = CNContact.predicateForContacts(withIdentifiers: identifiers)
-        return try? cnContactStore.unifiedContacts(matching: predicate, keysToFetch: contactKeys as [CNKeyDescriptor])
+        return try cnContactStore.unifiedContacts(matching: predicate, keysToFetch: keysWithViewControllerDescriptor())
+    }
+
+    func fetchCnContact(withId id: String) throws -> CNContact {
+        return try cnContactStore.unifiedContact(withIdentifier: id, keysToFetch: keysWithViewControllerDescriptor())
+    }
+
+    func keysWithViewControllerDescriptor() -> [CNKeyDescriptor] {
+        var keys = CNContact.defaultKeys
+        keys.append(CNContactViewController.descriptorForRequiredKeys())
+        return keys
     }
 }
