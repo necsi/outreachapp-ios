@@ -2,7 +2,7 @@
 //  CnContact.swift
 //  OutreachApp
 //
-//  Created by Demicheli, Stefano (Agoda) on 15/3/2563 BE.
+//  Created by Demicheli, Stefano on 15/3/2563 BE.
 //  Copyright © 2563 NECSI. All rights reserved.
 //
 
