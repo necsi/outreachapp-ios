@@ -60,7 +60,7 @@ final class MemberViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        viewModel.goToMember(at: indexPath)
     }
 }
 

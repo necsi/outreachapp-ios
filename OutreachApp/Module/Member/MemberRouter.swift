@@ -28,4 +28,14 @@ final class MemberRouter {
         let navigationController = UINavigationController(rootViewController: viewController)
         self.viewController.navigationController?.present(navigationController, animated: true)
     }
+
+    func goTo(contact: CNContact) {
+        if #available(iOS 9.0, *) {
+            let store = CNContactStore()
+            let viewController = CNContactViewController(for: contact)
+            viewController.contactStore = store
+            viewController.delegate = self.viewController
+            self.viewController.navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
 }

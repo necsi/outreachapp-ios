@@ -10,7 +10,7 @@ import UIKit
 
 struct MemberBuilder {
 
-    static func build(withCommunity community: Community) -> UIViewController {
+    func build(withCommunity community: Community) -> UIViewController {
         let service = MemberServiceImpl()
         let viewModel = MemberListViewModel(community: community, memberService: service)
         let viewController = MemberViewController(style: .plain,viewModel: viewModel)

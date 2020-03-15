@@ -15,6 +15,8 @@
 		0B1BD9AB241C8F28005CAC01 /* MemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BD9A5241C8F28005CAC01 /* MemberViewController.swift */; };
 		0B1BD9AC241C8F28005CAC01 /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BD9A6241C8F28005CAC01 /* MemberTableViewCell.swift */; };
 		0B1BD9AE241C8FD1005CAC01 /* MemberService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BD9AD241C8FD1005CAC01 /* MemberService.swift */; };
+		0B1BD9B0241DB72B005CAC01 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BD9AF241DB72B005CAC01 /* ServiceError.swift */; };
+		0B1BD9B2241DBF72005CAC01 /* CnContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BD9B1241DBF72005CAC01 /* CnContact.swift */; };
 		0B2374EA241A7F2400E072AC /* AddCommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2374E9241A7F2400E072AC /* AddCommunityViewModel.swift */; };
 		0B2374EE241A81FC00E072AC /* AddCommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2374ED241A81FC00E072AC /* AddCommunityViewController.swift */; };
 		0B2374F0241A841200E072AC /* CommunityRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2374EF241A841200E072AC /* CommunityRouter.swift */; };
@@ -70,6 +72,8 @@
 		0B1BD9A5241C8F28005CAC01 /* MemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberViewController.swift; sourceTree = "<group>"; };
 		0B1BD9A6241C8F28005CAC01 /* MemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
 		0B1BD9AD241C8FD1005CAC01 /* MemberService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberService.swift; sourceTree = "<group>"; };
+		0B1BD9AF241DB72B005CAC01 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
+		0B1BD9B1241DBF72005CAC01 /* CnContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CnContact.swift; sourceTree = "<group>"; };
 		0B2374E9241A7F2400E072AC /* AddCommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommunityViewModel.swift; sourceTree = "<group>"; };
 		0B2374ED241A81FC00E072AC /* AddCommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommunityViewController.swift; sourceTree = "<group>"; };
 		0B2374EF241A841200E072AC /* CommunityRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityRouter.swift; sourceTree = "<group>"; };
@@ -258,6 +262,7 @@
 				0BA2B822241726B60067F14C /* CommunityService.swift */,
 				0B7DA8682414B9F200F0B210 /* PhoneContactService.swift */,
 				0B1BD9AD241C8FD1005CAC01 /* MemberService.swift */,
+				0B1BD9AF241DB72B005CAC01 /* ServiceError.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 			children = (
 				0BA2B813241672430067F14C /* Contact.swift */,
 				0B0FB619241729DE00ABD14D /* Community.swift */,
+				0B1BD9B1241DBF72005CAC01 /* CnContact.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -491,8 +497,10 @@
 				0B7DA86F2414C14200F0B210 /* PhoneContactViewController.swift in Sources */,
 				0B2374EA241A7F2400E072AC /* AddCommunityViewModel.swift in Sources */,
 				0B7DA8732414E5C800F0B210 /* PhoneContactBuilder.swift in Sources */,
+				0B1BD9B2241DBF72005CAC01 /* CnContact.swift in Sources */,
 				0BA2B81D241725CD0067F14C /* CommunityTableViewCell.swift in Sources */,
 				0BA0C53D2414902F00DD8809 /* AppDelegate.swift in Sources */,
+				0B1BD9B0241DB72B005CAC01 /* ServiceError.swift in Sources */,
 				0B1BD9AB241C8F28005CAC01 /* MemberViewController.swift in Sources */,
 				0B1BD9AA241C8F28005CAC01 /* MemberBuilder.swift in Sources */,
 				0B1BD9A7241C8F28005CAC01 /* MemberCellViewModel.swift in Sources */,
@@ -618,7 +626,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -672,7 +680,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
