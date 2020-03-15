@@ -3,7 +3,7 @@
     <entity name="Community" representedClassName="Community" syncable="YES" codeGenerationType="class">
         <attribute name="identifier" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="members" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contact"/>
+        <relationship name="members" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contact" inverseName="communities" inverseEntity="Contact"/>
     </entity>
     <entity name="Contact" representedClassName="Contact" syncable="YES" codeGenerationType="class">
         <attribute name="firstName" attributeType="String"/>
@@ -11,9 +11,10 @@
         <attribute name="lastName" attributeType="String"/>
         <attribute name="reminderDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="reminderFrequency" optional="YES" attributeType="String"/>
+        <relationship name="communities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Community" inverseName="members" inverseEntity="Community"/>
     </entity>
     <elements>
         <element name="Community" positionX="-63" positionY="99" width="128" height="88"/>
-        <element name="Contact" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="Contact" positionX="-63" positionY="-18" width="128" height="133"/>
     </elements>
 </model>
