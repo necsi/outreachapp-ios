@@ -6,7 +6,7 @@
 //  Copyright © 2563 NECSI. All rights reserved.
 //
 
-final class MemberCellViewModel {
+struct MemberCellViewModel {
 
     let identifier: String
     let firstName: String
