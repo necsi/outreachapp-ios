@@ -18,6 +18,16 @@
 		0B1BD9B0241DB72B005CAC01 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BD9AF241DB72B005CAC01 /* ServiceError.swift */; };
 		0B1BD9B2241DBF72005CAC01 /* CnContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BD9B1241DBF72005CAC01 /* CnContact.swift */; };
 		0B1BDC3E241DFDF1005CAC01 /* LocalNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BDC3D241DFDF1005CAC01 /* LocalNotificationService.swift */; };
+		0B1BDC46241E0DCC005CAC01 /* MemberNotificationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BDC45241E0DCC005CAC01 /* MemberNotificationListViewModel.swift */; };
+		0B1BDC48241E0DD8005CAC01 /* MemberNotificationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BDC47241E0DD8005CAC01 /* MemberNotificationCellViewModel.swift */; };
+		0B1BDC4A241E0E97005CAC01 /* AddNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BDC49241E0E97005CAC01 /* AddNotificationView.swift */; };
+		0B1BDC4D241E0F26005CAC01 /* LeftIconTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BDC4C241E0F26005CAC01 /* LeftIconTextField.swift */; };
+		0B1BDC4F241E1AC5005CAC01 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BDC4E241E1AC5005CAC01 /* NotificationViewController.swift */; };
+		0B1BDC51241E6900005CAC01 /* NotificationTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BDC50241E6900005CAC01 /* NotificationTableView.swift */; };
+		0B1BDC53241E698E005CAC01 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BDC52241E698E005CAC01 /* NotificationTableViewCell.swift */; };
+		0B1BDC55241E7004005CAC01 /* MemberNotificationBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BDC54241E7004005CAC01 /* MemberNotificationBuilder.swift */; };
+		0B1BDEC0241F48C0005CAC01 /* AddMemberNotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BDEBF241F48C0005CAC01 /* AddMemberNotificationViewModel.swift */; };
+		0B1BDEC2241F4972005CAC01 /* MemberNotificationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BDEC1241F4972005CAC01 /* MemberNotificationRouter.swift */; };
 		0B2374EA241A7F2400E072AC /* AddCommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2374E9241A7F2400E072AC /* AddCommunityViewModel.swift */; };
 		0B2374EE241A81FC00E072AC /* AddCommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2374ED241A81FC00E072AC /* AddCommunityViewController.swift */; };
 		0B2374F0241A841200E072AC /* CommunityRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2374EF241A841200E072AC /* CommunityRouter.swift */; };
@@ -76,6 +86,16 @@
 		0B1BD9AF241DB72B005CAC01 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		0B1BD9B1241DBF72005CAC01 /* CnContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CnContact.swift; sourceTree = "<group>"; };
 		0B1BDC3D241DFDF1005CAC01 /* LocalNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationService.swift; sourceTree = "<group>"; };
+		0B1BDC45241E0DCC005CAC01 /* MemberNotificationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberNotificationListViewModel.swift; sourceTree = "<group>"; };
+		0B1BDC47241E0DD8005CAC01 /* MemberNotificationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberNotificationCellViewModel.swift; sourceTree = "<group>"; };
+		0B1BDC49241E0E97005CAC01 /* AddNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNotificationView.swift; sourceTree = "<group>"; };
+		0B1BDC4C241E0F26005CAC01 /* LeftIconTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftIconTextField.swift; sourceTree = "<group>"; };
+		0B1BDC4E241E1AC5005CAC01 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		0B1BDC50241E6900005CAC01 /* NotificationTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableView.swift; sourceTree = "<group>"; };
+		0B1BDC52241E698E005CAC01 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		0B1BDC54241E7004005CAC01 /* MemberNotificationBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberNotificationBuilder.swift; sourceTree = "<group>"; };
+		0B1BDEBF241F48C0005CAC01 /* AddMemberNotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberNotificationViewModel.swift; sourceTree = "<group>"; };
+		0B1BDEC1241F4972005CAC01 /* MemberNotificationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberNotificationRouter.swift; sourceTree = "<group>"; };
 		0B2374E9241A7F2400E072AC /* AddCommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommunityViewModel.swift; sourceTree = "<group>"; };
 		0B2374ED241A81FC00E072AC /* AddCommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommunityViewController.swift; sourceTree = "<group>"; };
 		0B2374EF241A841200E072AC /* CommunityRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityRouter.swift; sourceTree = "<group>"; };
@@ -168,6 +188,8 @@
 		0B1BDC42241E0CC3005CAC01 /* MemberNotification */ = {
 			isa = PBXGroup;
 			children = (
+				0B1BDC54241E7004005CAC01 /* MemberNotificationBuilder.swift */,
+				0B1BDEC1241F4972005CAC01 /* MemberNotificationRouter.swift */,
 				0B1BDC43241E0CDD005CAC01 /* ViewModel */,
 				0B1BDC44241E0CE2005CAC01 /* View */,
 			);
@@ -177,6 +199,9 @@
 		0B1BDC43241E0CDD005CAC01 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				0B1BDEBF241F48C0005CAC01 /* AddMemberNotificationViewModel.swift */,
+				0B1BDC47241E0DD8005CAC01 /* MemberNotificationCellViewModel.swift */,
+				0B1BDC45241E0DCC005CAC01 /* MemberNotificationListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -184,8 +209,20 @@
 		0B1BDC44241E0CE2005CAC01 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0B1BDC49241E0E97005CAC01 /* AddNotificationView.swift */,
+				0B1BDC50241E6900005CAC01 /* NotificationTableView.swift */,
+				0B1BDC4E241E1AC5005CAC01 /* NotificationViewController.swift */,
+				0B1BDC52241E698E005CAC01 /* NotificationTableViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0B1BDC4B241E0F07005CAC01 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				0B1BDC4C241E0F26005CAC01 /* LeftIconTextField.swift */,
+			);
+			path = UIComponents;
 			sourceTree = "<group>";
 		};
 		0B7DA8622414B9AE00F0B210 /* PhoneContact */ = {
@@ -227,6 +264,7 @@
 				0BA0C5712414906000DD8809 /* Module */,
 				0BA0C5762414909600DD8809 /* Repository */,
 				0BA0C5722414906C00DD8809 /* Service */,
+				0B1BDC4B241E0F07005CAC01 /* UIComponents */,
 			);
 			path = OutreachApp;
 			sourceTree = "<group>";
@@ -518,12 +556,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BA2B823241726B60067F14C /* CommunityService.swift in Sources */,
+				0B1BDEC0241F48C0005CAC01 /* AddMemberNotificationViewModel.swift in Sources */,
 				0B1BDC3E241DFDF1005CAC01 /* LocalNotificationService.swift in Sources */,
+				0B1BDEC2241F4972005CAC01 /* MemberNotificationRouter.swift in Sources */,
 				0B1BD9AE241C8FD1005CAC01 /* MemberService.swift in Sources */,
+				0B1BDC55241E7004005CAC01 /* MemberNotificationBuilder.swift in Sources */,
 				0BA2B814241672430067F14C /* Contact.swift in Sources */,
 				0B0FB61A241729DE00ABD14D /* Community.swift in Sources */,
+				0B1BDC46241E0DCC005CAC01 /* MemberNotificationListViewModel.swift in Sources */,
 				0B7DA86F2414C14200F0B210 /* PhoneContactViewController.swift in Sources */,
 				0B2374EA241A7F2400E072AC /* AddCommunityViewModel.swift in Sources */,
+				0B1BDC53241E698E005CAC01 /* NotificationTableViewCell.swift in Sources */,
 				0B7DA8732414E5C800F0B210 /* PhoneContactBuilder.swift in Sources */,
 				0B1BD9B2241DBF72005CAC01 /* CnContact.swift in Sources */,
 				0BA2B81D241725CD0067F14C /* CommunityTableViewCell.swift in Sources */,
@@ -534,13 +577,17 @@
 				0B1BD9A7241C8F28005CAC01 /* MemberCellViewModel.swift in Sources */,
 				0BA2B812241657290067F14C /* CalendarService.swift in Sources */,
 				0B7DA8712414E08500F0B210 /* PhoneContactTableViewCell.swift in Sources */,
+				0B1BDC48241E0DD8005CAC01 /* MemberNotificationCellViewModel.swift in Sources */,
 				0BA2B8252417271D0067F14C /* CommunityCellViewModel.swift in Sources */,
 				0B7DA8692414B9F200F0B210 /* PhoneContactService.swift in Sources */,
 				0BA69CBA241C814400BBA77F /* PhoneContactRouter.swift in Sources */,
+				0B1BDC4D241E0F26005CAC01 /* LeftIconTextField.swift in Sources */,
 				0B1BD9A9241C8F28005CAC01 /* MemberRouter.swift in Sources */,
+				0B1BDC4A241E0E97005CAC01 /* AddNotificationView.swift in Sources */,
 				0BA2B81F241725EA0067F14C /* CommunityViewController.swift in Sources */,
 				0BA0C583241491A400DD8809 /* Contacts.xcdatamodeld in Sources */,
 				0BA0C5802414919B00DD8809 /* ContactPersistenceStore.swift in Sources */,
+				0B1BDC51241E6900005CAC01 /* NotificationTableView.swift in Sources */,
 				0B7DA8752414EA4500F0B210 /* SceneDelegate.swift in Sources */,
 				0B1BD9AC241C8F28005CAC01 /* MemberTableViewCell.swift in Sources */,
 				0B7DA8662414B9E400F0B210 /* PhoneContactListViewModel.swift in Sources */,
@@ -548,6 +595,7 @@
 				0B7DA86D2414BF3000F0B210 /* PhoneContactCellViewModel.swift in Sources */,
 				0BA2B81B241725B60067F14C /* CommunityListViewModel.swift in Sources */,
 				0B1BD9A8241C8F28005CAC01 /* MemberListViewModel.swift in Sources */,
+				0B1BDC4F241E1AC5005CAC01 /* NotificationViewController.swift in Sources */,
 				0B2374F0241A841200E072AC /* CommunityRouter.swift in Sources */,
 				0B2374EE241A81FC00E072AC /* AddCommunityViewController.swift in Sources */,
 			);
