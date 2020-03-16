@@ -6,12 +6,16 @@
 //  Copyright © 2563 NECSI. All rights reserved.
 //
 
-import NotificationCenter
 import Contacts
+import NotificationCenter
 
 protocol LocalNotificationService {
 
-    func notify(contact: CNContact, on date: Date, completion: @escaping (Error?) -> Void)
+    func notify(contact: CNContact, on date: Date, title: String, note: String, completion: @escaping (Result<UNNotificationRequest, Error>) -> Void)
+
+    func fetchPendingNotifications(completion: @escaping ([UNNotificationRequest]) -> Void)
+
+    func deleteNotification(withId id: String)
 }
 
 final class LocalNotificationServiceImpl: LocalNotificationService {
@@ -22,12 +26,49 @@ final class LocalNotificationServiceImpl: LocalNotificationService {
         self.notificationCenter = notificationCenter
     }
 
-    func notify(contact: CNContact, on date: Date, completion: @escaping (Error?) -> Void) {
-        checkAuthorization { (error) in
-            if let error = error { completion(error) }
+    func notify(contact: CNContact, on date: Date, title: String, note: String, completion: @escaping (Result<UNNotificationRequest, Error>) -> Void) {
+        checkAuthorization { [weak self] (error) in
+            guard let self = self else { return }
 
-            // Setup notification
+            if let error = error {
+                DispatchQueue.main.async {
+                    completion(Result.failure(error))
+                    return
+                }
+            }
+
+            let content = UNMutableNotificationContent()
+            content.title = title
+            content.body = note
+            content.sound = UNNotificationSound.default
+
+            let components = Calendar.current.dateComponents([.day, .hour, .minute], from: date)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
+            let notificationRequest = UNNotificationRequest(
+                identifier: UUID().uuidString,
+                content: content,
+                trigger: trigger
+            )
+
+            self.notificationCenter.add(notificationRequest) { (error) in
+                DispatchQueue.main.async {
+                    if let error = error { completion(Result.failure(error)) }
+                    completion(Result.success(notificationRequest))
+                }
+            }
         }
+    }
+
+    func fetchPendingNotifications(completion: @escaping ([UNNotificationRequest]) -> Void) {
+        notificationCenter.getPendingNotificationRequests { request in
+            DispatchQueue.main.async {
+                completion(request)
+            }
+        }
+    }
+
+    func deleteNotification(withId id: String) {
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [id])
     }
 }
 
@@ -78,10 +119,6 @@ private extension LocalNotificationServiceImpl {
                 completion(false, nil)
             }
         }
-    }
-
-    func deleteNotification(withId id: String) {
-        notificationCenter.removePendingNotificationRequests(withIdentifiers: [id])
     }
 }
 
