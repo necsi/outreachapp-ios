@@ -78,6 +78,10 @@ final class MemberNotificationListViewModel {
     func cellViewModel(at indexPath: IndexPath) -> MemberNotificationCellViewModel {
         return notificationCellViewModels[indexPath.row]
     }
+
+    func finish() {
+        router?.dismiss()
+    }
 }
 
 // MARK: - Private
