@@ -137,7 +137,7 @@ private extension PhoneContactViewController {
 
     func setupTableView() {
         title = viewModel.title
-        view.backgroundColor = .white
+        view.backgroundColor = Theme.Color.background
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(PhoneContactTableViewCell.self,
@@ -152,9 +152,9 @@ private extension PhoneContactViewController {
         // TODO: Extract to view
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButton.addTarget(self, action: #selector(didTapDone), for: .touchUpInside)
-        doneButton.backgroundColor = .blue
+        doneButton.backgroundColor = Theme.Color.action
         doneButton.setTitle(viewModel.buttonText, for: .normal)
-        doneButton.setTitleColor(.white, for: .normal)
+        doneButton.setTitleColor(Theme.Color.primaryText, for: .normal)
         doneButton.layer.cornerRadius = 10
         view.addSubview(doneButton)
         NSLayoutConstraint.activate([

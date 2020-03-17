@@ -14,6 +14,8 @@ final class PhoneContactTableViewCell: UITableViewCell {
 
     func configure(with viewModel: PhoneContactCellViewModel) {
         textLabel?.text = viewModel.fullName
+        textLabel?.textColor = Theme.Color.primaryText
         selectionStyle = .none
+        backgroundColor = Theme.Color.background
     }
 }

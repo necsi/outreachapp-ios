@@ -113,7 +113,7 @@ private extension MemberViewController {
 
     func setupTableView() {
         title = viewModel.title
-        view.backgroundColor = .white
+        view.backgroundColor = Theme.Color.background
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MemberTableViewCell.self,

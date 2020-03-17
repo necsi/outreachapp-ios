@@ -13,7 +13,7 @@ class NotificationViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = viewModel.title
-        label.textColor = .white
+        label.textColor = Theme.Color.primaryText
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.sizeToFit()
@@ -23,14 +23,14 @@ class NotificationViewController: UIViewController {
     private let closeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "close").withRenderingMode(.alwaysTemplate), for: .normal)
-        button.tintColor = .white
+        button.tintColor = Theme.Color.primaryText
         button.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
         return button
     }()
 
     private let separatorLine: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = Theme.Color.primaryText
         view.alpha = 0.5
         return view
     }()
@@ -145,7 +145,7 @@ extension NotificationViewController: AddNotificationViewDelegate {
 private extension NotificationViewController {
 
     private func setupViews() {
-        view.backgroundColor = .black //.mountainDark
+        view.backgroundColor = Theme.Color.background
         setupTitleLabel()
         setupCloseButton()
         setupSeparatorLine()

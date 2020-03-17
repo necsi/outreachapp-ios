@@ -27,7 +27,7 @@ class AddNotificationView: UIView {
         let label = UILabel()
         // TODO: Localize
         label.text = viewModel.addNotificationTitle
-        label.textColor = .white
+        label.textColor = Theme.Color.primaryText
         label.font = UIFont.boldSystemFont(ofSize: 16)//Appearance.appFont(with: 16)
         label.sizeToFit()
         return label
@@ -36,7 +36,7 @@ class AddNotificationView: UIView {
     let addButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "plus").withRenderingMode(.alwaysTemplate), for: .normal)
-        button.tintColor = .white
+        button.tintColor = Theme.Color.primaryText
         button.addTarget(self, action: #selector(addNotification), for: .touchUpInside)
         return button
     }()
@@ -44,13 +44,13 @@ class AddNotificationView: UIView {
     private let datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .dateAndTime
-        datePicker.setValue(UIColor.white, forKey: "textColor")
+        datePicker.setValue(Theme.Color.primaryText, forKey: "textColor")
         return datePicker
     }()
 
     private let separatorLine: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = Theme.Color.primaryText
         view.alpha = 0.5
         return view
     }()
@@ -59,7 +59,7 @@ class AddNotificationView: UIView {
         let label = UILabel()
         label.text = viewModel.noteTextFieldTitle
         label.font = UIFont.systemFont(ofSize: 12)//Appearance.appFont(with: 12)
-        label.textColor = .white
+        label.textColor = Theme.Color.primaryText
         label.sizeToFit()
         return label
     }()
@@ -76,7 +76,7 @@ class AddNotificationView: UIView {
         // TODO: Localize
         button.setTitle(viewModel.doneButtonTitle, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)//Appearance.appFont(with: 16)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(Theme.Color.primaryText, for: .normal)
         button.isHidden = true
         button.addTarget(self, action: #selector(handleDone), for: .touchUpInside)
         return button
@@ -120,7 +120,7 @@ extension AddNotificationView {
 private extension AddNotificationView {
 
     func setupViews() {
-        backgroundColor = .black//.mountainBlue
+        backgroundColor = Theme.Color.background
         layer.cornerRadius = 8
         layer.masksToBounds = true
 

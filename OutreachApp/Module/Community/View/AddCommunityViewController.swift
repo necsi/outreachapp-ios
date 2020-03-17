@@ -75,7 +75,7 @@ private extension AddCommunityViewController {
 
     func setupMainView() {
         title = viewModel.title
-        view.backgroundColor = .white
+        view.backgroundColor = Theme.Color.background
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .close,
@@ -88,7 +88,7 @@ private extension AddCommunityViewController {
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
         nameTextField.addTarget(self, action: #selector(onTextFieldEnd), for: .editingChanged)
         nameTextField.delegate = self
-        nameTextField.backgroundColor = .lightGray
+        nameTextField.backgroundColor = Theme.Color.secondaryBackground
         nameTextField.placeholder = viewModel.placeholderText
         nameTextField.layer.cornerRadius = 10
         view.addSubview(nameTextField)
@@ -106,7 +106,7 @@ private extension AddCommunityViewController {
         doneButton.addTarget(self, action: #selector(didTapDone), for: .touchUpInside)
         doneButton.backgroundColor = .blue
         doneButton.setTitle(viewModel.buttonText, for: .normal)
-        doneButton.setTitleColor(.white, for: .normal)
+        doneButton.setTitleColor(Theme.Color.primaryText, for: .normal)
         doneButton.layer.cornerRadius = 10
         view.addSubview(doneButton)
         NSLayoutConstraint.activate([

@@ -21,32 +21,31 @@ final class NotificationTableViewCell: UITableViewCell {
 
     let timeLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize: 25)//Appearance.appFont(with: 30)
+        label.textColor = Theme.Color.primaryText
+        label.font = UIFont.boldSystemFont(ofSize: 25)
         label.sizeToFit()
         return label
     }()
 
     let noteLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.init(white: 0.85, alpha: 1)
-//        label.font = Appearance.appFont(with: 13)
+        label.textColor = Theme.Color.secondaryText
+        label.font = UIFont.systemFont(ofSize: 16)
         label.sizeToFit()
         return label
     }()
 
     private let stateSwitch: UISwitch = {
         let sw = UISwitch()
-        sw.onTintColor = .systemPink//.mountainBlue
-        sw.tintColor = .white//UIColor.rgb(red: 80, green: 80, blue: 80)
-        sw.thumbTintColor = .white
+        sw.onTintColor = Theme.Color.attention
+        sw.tintColor = Theme.Color.primaryText
         sw.isOn = true
         return sw
     }()
 
     private let separatorLine: UIView = {
         let view = UIView()
-        view.backgroundColor = .white//.mountainBlue
+        view.backgroundColor = Theme.Color.primaryText
         return view
     }()
 

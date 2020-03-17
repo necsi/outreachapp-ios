@@ -14,6 +14,8 @@ final class MemberTableViewCell: UITableViewCell {
 
     func configure(with viewModel: MemberCellViewModel) {
         textLabel?.text = viewModel.fullName
+        textLabel?.textColor = Theme.Color.primaryText
         selectionStyle = .none
+        backgroundColor = Theme.Color.background
     }
 }

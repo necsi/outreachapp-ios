@@ -16,7 +16,7 @@ class LeftIconTextField: UITextField {
         }
     }
 
-    var imageTintColor: UIColor = .white
+    var imageTintColor: UIColor = Theme.Color.primaryText
 
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         var textRect = super.leftViewRect(forBounds: bounds)

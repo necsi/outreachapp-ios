@@ -14,6 +14,8 @@ final class CommunityTableViewCell: UITableViewCell {
 
     func configure(with viewModel: CommunityCellViewModel) {
         textLabel?.text = viewModel.name
+        textLabel?.textColor = Theme.Color.primaryText
         selectionStyle = .none
+        backgroundColor = Theme.Color.background
     }
 }
