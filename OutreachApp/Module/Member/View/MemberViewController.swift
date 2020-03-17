@@ -54,7 +54,8 @@ final class MemberViewController: UITableViewController {
         )
         let cellViewModel = viewModel.cellViewModel(at: indexPath)
         if let cell = cell as? MemberTableViewCell {
-            cell.configure(with: cellViewModel)
+            cell.configure(with: cellViewModel, indexPath: indexPath)
+            cell.delegate = self
         }
         return cell
     }
@@ -89,6 +90,15 @@ extension MemberViewController: CNContactViewControllerDelegate {
 
     func contactViewController(_ viewController: CNContactViewController, didCompleteWith contact: CNContact?) {
         fetchMembers()
+    }
+}
+
+// MARK: - MemberTableViewCellDelegate
+
+extension MemberViewController: MemberTableViewCellDelegate {
+
+    func didTapAccessoryView(at indexPath: IndexPath) {
+        viewModel.goToNotifications(at: indexPath)
     }
 }
 

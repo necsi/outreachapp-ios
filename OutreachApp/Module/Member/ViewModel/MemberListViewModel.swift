@@ -65,6 +65,17 @@ final class MemberListViewModel {
             self.router?.goTo(contact: contact)
         }
     }
+
+    func goToNotifications(at indexPath: IndexPath) {
+        let memberId = members[indexPath.row].identifier
+        memberService.fetchMember(withId: memberId) { [weak self] result in
+            guard let self = self, let contact = try? result.get() else {
+                assertionFailure("Failed to fetch member with id \(memberId)")
+                return
+            }
+            self.router?.goToNotifications(forContact: contact)
+        }
+    }
 }
 
 // MARK: - PhoneContactModuleOutput

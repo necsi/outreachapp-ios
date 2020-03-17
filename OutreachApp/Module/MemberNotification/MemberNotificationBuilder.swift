@@ -11,8 +11,7 @@ import UIKit
 
 struct MemberNotificationBuilder {
 
-    func build() -> UIViewController {
-        let contact = CNContact()
+    func build(withContact contact: CNContact) -> UIViewController {
         let notificationService = LocalNotificationServiceImpl()
         let listViewModel = MemberNotificationListViewModel(member: contact,
                                                             notificationService: notificationService)

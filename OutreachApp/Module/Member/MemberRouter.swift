@@ -12,13 +12,16 @@ import UIKit
 final class MemberRouter {
 
     private let phoneContactBuilder: PhoneContactBuilder
+    private let notificationBuilder: MemberNotificationBuilder
     private let viewController: MemberViewController
     private let viewModel: MemberListViewModel
 
     init(phoneContactBuilder: PhoneContactBuilder = PhoneContactBuilder(),
+         notificationBuilder: MemberNotificationBuilder = MemberNotificationBuilder(),
          viewController: MemberViewController,
          viewModel: MemberListViewModel) {
         self.phoneContactBuilder = phoneContactBuilder
+        self.notificationBuilder = notificationBuilder
         self.viewController = viewController
         self.viewModel = viewModel
     }
@@ -37,5 +40,10 @@ final class MemberRouter {
             viewController.delegate = self.viewController
             self.viewController.navigationController?.pushViewController(viewController, animated: true)
         }
+    }
+
+    func goToNotifications(forContact contact: CNContact) {
+        let viewController = notificationBuilder.build(withContact: contact)
+        self.viewController.navigationController?.present(viewController, animated: true)
     }
 }
