@@ -19,4 +19,8 @@ struct Theme {
         static let secondaryText = UIColor(named: "secondaryText")!
         static let attention = UIColor(named: "attention")!
     }
+
+    struct Image {
+        static let createNew = UIImage(named: "create_new")!
+    }
 }

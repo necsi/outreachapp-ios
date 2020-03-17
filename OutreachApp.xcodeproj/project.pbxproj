@@ -31,7 +31,7 @@
 		0B2374EA241A7F2400E072AC /* AddCommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2374E9241A7F2400E072AC /* AddCommunityViewModel.swift */; };
 		0B2374EE241A81FC00E072AC /* AddCommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2374ED241A81FC00E072AC /* AddCommunityViewController.swift */; };
 		0B2374F0241A841200E072AC /* CommunityRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2374EF241A841200E072AC /* CommunityRouter.swift */; };
-		0B5C381A24205D4200EB6601 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5C381924205D4200EB6601 /* Colors.swift */; };
+		0B5C381A24205D4200EB6601 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5C381924205D4200EB6601 /* Theme.swift */; };
 		0B7DA8662414B9E400F0B210 /* PhoneContactListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7DA8652414B9E400F0B210 /* PhoneContactListViewModel.swift */; };
 		0B7DA8692414B9F200F0B210 /* PhoneContactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7DA8682414B9F200F0B210 /* PhoneContactService.swift */; };
 		0B7DA86D2414BF3000F0B210 /* PhoneContactCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7DA86C2414BF3000F0B210 /* PhoneContactCellViewModel.swift */; };
@@ -100,7 +100,7 @@
 		0B2374E9241A7F2400E072AC /* AddCommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommunityViewModel.swift; sourceTree = "<group>"; };
 		0B2374ED241A81FC00E072AC /* AddCommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommunityViewController.swift; sourceTree = "<group>"; };
 		0B2374EF241A841200E072AC /* CommunityRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityRouter.swift; sourceTree = "<group>"; };
-		0B5C381924205D4200EB6601 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		0B5C381924205D4200EB6601 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		0B7DA8652414B9E400F0B210 /* PhoneContactListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneContactListViewModel.swift; sourceTree = "<group>"; };
 		0B7DA8682414B9F200F0B210 /* PhoneContactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneContactService.swift; sourceTree = "<group>"; };
 		0B7DA86C2414BF3000F0B210 /* PhoneContactCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneContactCellViewModel.swift; sourceTree = "<group>"; };
@@ -306,7 +306,7 @@
 				0BA0C5482414902F00DD8809 /* Assets.xcassets */,
 				0BA0C54A2414902F00DD8809 /* LaunchScreen.storyboard */,
 				0BA0C54D2414902F00DD8809 /* Info.plist */,
-				0B5C381924205D4200EB6601 /* Colors.swift */,
+				0B5C381924205D4200EB6601 /* Theme.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -559,7 +559,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BA2B823241726B60067F14C /* CommunityService.swift in Sources */,
-				0B5C381A24205D4200EB6601 /* Colors.swift in Sources */,
+				0B5C381A24205D4200EB6601 /* Theme.swift in Sources */,
 				0B1BDEC0241F48C0005CAC01 /* AddMemberNotificationViewModel.swift in Sources */,
 				0B1BDC3E241DFDF1005CAC01 /* LocalNotificationService.swift in Sources */,
 				0B1BDEC2241F4972005CAC01 /* MemberNotificationRouter.swift in Sources */,
