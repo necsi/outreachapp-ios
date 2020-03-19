@@ -17,6 +17,7 @@ struct Theme {
         static let secondaryBackground = UIColor(named: "secondaryBackground")!
         static let primaryText = UIColor(named: "primaryText")!
         static let secondaryText = UIColor(named: "secondaryText")!
+        static let lightText = UIColor(named: "lightText")!
         static let attention = UIColor(named: "attention")!
     }
 

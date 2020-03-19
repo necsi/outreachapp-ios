@@ -11,7 +11,7 @@ import UIKit
 class AddCommunityViewController: UIViewController {
 
     private let viewModel: AddCommunityViewModel
-    private let nameTextField = UITextField()
+    private let nameTextField = LeftIconTextField()
     private let doneButton = UIButton()
 
     init(viewModel: AddCommunityViewModel) {
@@ -86,11 +86,9 @@ private extension AddCommunityViewController {
 
     func setupNameTextField() {
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
+        nameTextField.leftImage = #imageLiteral(resourceName: "note")
         nameTextField.addTarget(self, action: #selector(onTextFieldEnd), for: .editingChanged)
         nameTextField.delegate = self
-        nameTextField.backgroundColor = Theme.Color.secondaryBackground
-        nameTextField.placeholder = viewModel.placeholderText
-        nameTextField.layer.cornerRadius = 10
         view.addSubview(nameTextField)
         NSLayoutConstraint.activate([
             nameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
@@ -104,9 +102,9 @@ private extension AddCommunityViewController {
         // TODO: Extract to view
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButton.addTarget(self, action: #selector(didTapDone), for: .touchUpInside)
-        doneButton.backgroundColor = .blue
+        doneButton.backgroundColor = Theme.Color.action
         doneButton.setTitle(viewModel.buttonText, for: .normal)
-        doneButton.setTitleColor(Theme.Color.primaryText, for: .normal)
+        doneButton.setTitleColor(Theme.Color.lightText, for: .normal)
         doneButton.layer.cornerRadius = 10
         view.addSubview(doneButton)
         NSLayoutConstraint.activate([
