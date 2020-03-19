@@ -47,7 +47,7 @@ final class MemberNotificationListViewModel {
     }
 
     func fetchNotifications(completion: @escaping () -> Void) {
-        notificationService.fetchPendingNotifications { [weak self] notifications in
+        notificationService.fetchPendingNotifications(memberId: member.identifier) { [weak self] notifications in
             guard let self = self else { return }
             self.notificationCellViewModels = notifications.compactMap(self.mapToViewModel)
             completion()

@@ -13,13 +13,14 @@ protocol LocalNotificationService {
 
     func notify(contact: CNContact, on date: Date, title: String, note: String, completion: @escaping (Result<UNNotificationRequest, Error>) -> Void)
 
-    func fetchPendingNotifications(completion: @escaping ([UNNotificationRequest]) -> Void)
+    func fetchPendingNotifications(memberId: String, completion: @escaping ([UNNotificationRequest]) -> Void)
 
     func deleteNotification(withId id: String)
 }
 
 final class LocalNotificationServiceImpl: LocalNotificationService {
 
+    private let memberIdKey = "memberId"
     private let notificationCenter: UNUserNotificationCenter
 
     init(notificationCenter: UNUserNotificationCenter = UNUserNotificationCenter.current()) {
@@ -41,6 +42,7 @@ final class LocalNotificationServiceImpl: LocalNotificationService {
             content.title = title
             content.body = note
             content.sound = UNNotificationSound.default
+            content.userInfo[self.memberIdKey] = contact.identifier
 
             let components = Calendar.current.dateComponents([.day, .hour, .minute], from: date)
             let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
@@ -59,10 +61,14 @@ final class LocalNotificationServiceImpl: LocalNotificationService {
         }
     }
 
-    func fetchPendingNotifications(completion: @escaping ([UNNotificationRequest]) -> Void) {
+    func fetchPendingNotifications(memberId: String, completion: @escaping ([UNNotificationRequest]) -> Void) {
         notificationCenter.getPendingNotificationRequests { request in
+            let memberRequest = request.filter {
+                guard let id = $0.content.userInfo[self.memberIdKey] as? String else { return false }
+                return id == memberId
+            }
             DispatchQueue.main.async {
-                completion(request)
+                completion(memberRequest)
             }
         }
     }

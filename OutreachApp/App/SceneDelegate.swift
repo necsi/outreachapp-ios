@@ -17,8 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UISplitViewControllerDe
         window = UIWindow(windowScene: windowScene)
         // Test your modules here:
         let rootViewController = CommunityBuilder().buildCommunityList()
+//        let rootViewController = MemberNotificationBuilder().build()
         let navigationController = UINavigationController(rootViewController: rootViewController)
-        navigationController.view.backgroundColor = .white
+        navigationController.view.backgroundColor = Theme.Color.background
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }

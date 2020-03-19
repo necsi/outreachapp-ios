@@ -32,7 +32,7 @@ final class NotificationTableView: UITableView, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let label = UILabel()
         label.text = viewModel.emptyNotificationsDescription
-        label.textColor = UIColor.init(white: 0.8, alpha: 1)
+        label.textColor = Theme.Color.primaryText
         label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .center
         return label
