@@ -154,7 +154,7 @@ private extension PhoneContactViewController {
         doneButton.addTarget(self, action: #selector(didTapDone), for: .touchUpInside)
         doneButton.backgroundColor = Theme.Color.action
         doneButton.setTitle(viewModel.buttonText, for: .normal)
-        doneButton.setTitleColor(Theme.Color.primaryText, for: .normal)
+        doneButton.setTitleColor(Theme.Color.lightText, for: .normal)
         doneButton.layer.cornerRadius = 10
         view.addSubview(doneButton)
         NSLayoutConstraint.activate([

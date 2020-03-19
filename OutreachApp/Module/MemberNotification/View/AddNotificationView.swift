@@ -19,16 +19,15 @@ class AddNotificationView: UIView {
 
     let headerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .gray //UIColor.rgb(red: 70, green: 170, blue: 255)
+        view.backgroundColor = .gray
         return view
     }()
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        // TODO: Localize
         label.text = viewModel.addNotificationTitle
         label.textColor = Theme.Color.primaryText
-        label.font = UIFont.boldSystemFont(ofSize: 16)//Appearance.appFont(with: 16)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.sizeToFit()
         return label
     }()
@@ -58,7 +57,7 @@ class AddNotificationView: UIView {
     private lazy var noteLabel: UILabel = {
         let label = UILabel()
         label.text = viewModel.noteTextFieldTitle
-        label.font = UIFont.systemFont(ofSize: 12)//Appearance.appFont(with: 12)
+        label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = Theme.Color.primaryText
         label.sizeToFit()
         return label
@@ -73,9 +72,8 @@ class AddNotificationView: UIView {
 
     lazy var doneButton: UIButton = {
         let button = UIButton(type: .system)
-        // TODO: Localize
         button.setTitle(viewModel.doneButtonTitle, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)//Appearance.appFont(with: 16)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.setTitleColor(Theme.Color.primaryText, for: .normal)
         button.isHidden = true
         button.addTarget(self, action: #selector(handleDone), for: .touchUpInside)

@@ -17,7 +17,7 @@ final class PhoneContactListViewModel {
 
     var title: String {
         // TODO: Localize
-        return "Phone Contacts"
+        return "Add Contacts"
     }
 
     var buttonText: String {
