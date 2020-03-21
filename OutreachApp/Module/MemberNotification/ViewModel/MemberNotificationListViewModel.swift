@@ -98,9 +98,11 @@ private extension MemberNotificationListViewModel {
     }
 
     func dateString(from dateComponent: DateComponents) -> String {
-        guard let date = dateComponent.date else { return "" }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM dd, HH:mm"
-        return dateFormatter.string(from: date)
+        let calendar = Calendar(identifier: .gregorian)
+        let date = calendar.date(from: dateComponent) ?? Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM dd, HH:mm"
+        return formatter.string(from: date)
+
     }
 }
