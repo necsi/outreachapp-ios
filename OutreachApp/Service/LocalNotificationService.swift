@@ -44,7 +44,7 @@ final class LocalNotificationServiceImpl: LocalNotificationService {
             content.sound = UNNotificationSound.default
             content.userInfo[self.memberIdKey] = contact.identifier
 
-            let components = Calendar.current.dateComponents([.day, .hour, .minute], from: date)
+            let components = Calendar.current.dateComponents(in: TimeZone.current, from: date)
             let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
             let notificationRequest = UNNotificationRequest(
                 identifier: UUID().uuidString,
