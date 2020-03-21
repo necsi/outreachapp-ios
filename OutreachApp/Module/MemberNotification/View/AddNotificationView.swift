@@ -137,7 +137,7 @@ private extension AddNotificationView {
             datePicker.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 30),
             datePicker.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             datePicker.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
-            datePicker.heightAnchor.constraint(equalToConstant: 200)
+            datePicker.heightAnchor.constraint(equalToConstant: 150)
         ])
     }
 

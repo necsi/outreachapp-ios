@@ -83,7 +83,7 @@ class NotificationViewController: UIViewController {
 extension NotificationViewController {
 
     @objc private func animateAddNotificationView() {
-        addNotificationViewTopToBottom?.constant = addNotificationView.isCollapsed ? -400 : -60
+        addNotificationViewTopToBottom?.constant = addNotificationView.isCollapsed ? -400 : -100
         UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 10, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
         }) { (completed) in
@@ -205,9 +205,9 @@ private extension NotificationViewController {
             addNotificationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             addNotificationView.heightAnchor.constraint(equalToConstant: 450)
         ])
-        addNotificationViewTopToBottom = addNotificationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60)
+        addNotificationViewTopToBottom = addNotificationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100)
         addNotificationViewTopToBottom?.isActive = true
-        addNotificationViewTopToTop = addNotificationView.topAnchor.constraint(equalTo: separatorLine.bottomAnchor)
+        addNotificationViewTopToTop = addNotificationView.topAnchor.constraint(equalTo: view.topAnchor)
     }
 }
 

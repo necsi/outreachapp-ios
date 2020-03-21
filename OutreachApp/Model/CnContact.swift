@@ -23,7 +23,6 @@ extension CNContact {
         CNContactDepartmentNameKey,
         CNContactPhoneNumbersKey,
         CNContactImageDataKey,
-        CNContactThumbnailImageDataKey,
-//        CNContactNoteKey,
+        CNContactThumbnailImageDataKey
     ] as [CNKeyDescriptor]
 }
