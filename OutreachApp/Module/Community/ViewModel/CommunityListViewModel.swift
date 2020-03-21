@@ -19,6 +19,11 @@ final class CommunityListViewModel {
         return cellViewModels.count
     }
 
+    var deleteTitle: String {
+        // TODO: Internationalize
+        return "Delete"
+    }
+
     var router: CommunityRouter?
 
     private var cellViewModels: [CommunityCellViewModel] = []
@@ -59,6 +64,11 @@ final class CommunityListViewModel {
             }
             self.router?.goTo(community: community)
         }
+    }
+
+    func deleteCommunity(at indexPath: IndexPath) {
+        let cellViewModel = cellViewModels.remove(at: indexPath.row)
+        communityService.deleteCommunity(withId: cellViewModel.identifier)
     }
 }
 

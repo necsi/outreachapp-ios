@@ -13,6 +13,8 @@ protocol CommunityService {
     func fetchCommunities(completion: @escaping (Result<[Community], Error>) -> Void)
 
     func fetchCommunity(withId id: String, completion: @escaping (Result<Community, Error>) -> Void)
+
+    func deleteCommunity(withId Id: String)
 }
 
 final class CommunityServiceImpl: CommunityService {
@@ -41,6 +43,14 @@ final class CommunityServiceImpl: CommunityService {
             completion(Result.success(community))
         } catch {
             completion(Result.failure(error))
+        }
+    }
+
+    func deleteCommunity(withId Id: String) {
+        fetchCommunity(withId: Id) { result in
+            guard let community = try? result.get() else { return }
+            self.persistenceStore.delete(community)
+            try? self.persistenceStore.save()
         }
     }
 }

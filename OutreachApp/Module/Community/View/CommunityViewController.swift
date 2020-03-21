@@ -60,6 +60,11 @@ final class CommunityViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.goToCommunity(at: indexPath)
     }
+
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: viewModel.deleteTitle, handler: deleteHandler)
+        return [deleteAction]
+    }
 }
 
 // MARK: - Actions
@@ -131,5 +136,10 @@ private extension CommunityViewController {
             }
             self?.tableView.reloadData()
         }
+    }
+
+    func deleteHandler(action: UITableViewRowAction, indexPath: IndexPath) {
+        viewModel.deleteCommunity(at: indexPath)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 }
